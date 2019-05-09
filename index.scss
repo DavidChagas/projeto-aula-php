@@ -1,0 +1,67 @@
+.view-index{
+	position: relative;
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+
+    align-items: center;
+    background-image: url(../images/bg-index.jpg);
+    background-size: cover;
+    background-position-x: right;
+
+    .bg{
+    	position: absolute;
+    	height: 100%;
+    	width: 100%;
+		background-color: rgba(0, 0, 0, 0.9);
+	}
+
+	.titulos{
+		width: 70%;
+		margin: 0 auto;
+		padding: 50px 0;
+
+		font-family: 'Montserrat-Light';
+		text-align: center;
+		color: #fbf2ef;
+		border-radius: 5px;
+
+		@media(max-width: 768px){
+			width: 95%;
+		}
+
+		.titulo1{
+			font-family: 'LongTime';
+			font-size: 50px;
+		}
+		.titulo2{
+			font-size: 30px;
+		}
+		.titulo3{
+			padding-top: 20px;
+			font-size: 20px;
+		}
+		.titulo4{
+			font-size: 15px;
+		}
+	}
+
+	.copyright{
+		position: absolute;
+		bottom: 10px;
+		left: 41%;
+
+		font-weight: bold;
+		font-size: 13px;
+		text-align: center;
+
+		@media(max-width: 768px){
+			left: 35%;
+		}
+	}
+
+	.btn{
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+}

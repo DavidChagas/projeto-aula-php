@@ -1,0 +1,13 @@
+//node-sass -w sass/style.scss css/style.css
+
+//Páginas
+@import "../index.scss";
+@import "../views/header/header.scss";
+@import "../views/contato/contato.scss";
+@import "../views/home/home.scss";
+@import "../views/footer/footer.scss";
+
+//Fontes
+@import "../fonts/fonts.scss";
+
+	

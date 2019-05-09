@@ -1,0 +1,50 @@
+.view-header{
+	width: 100%;
+	margin-bottom: 50px;
+
+	font-family: 'Montserrat-Regular';
+	background-color: #556594;
+	
+	box-shadow: 0px 2px 5px black;
+		
+	.logo{
+		text-align: center;
+
+		img{
+			height: 45px;
+    		margin-top: 10px;
+
+    		cursor: pointer;
+		}
+	}
+	.menu{
+		display: flex;
+		padding: 20px;
+		
+		justify-content: flex-end;
+		color: white;
+
+		.item-menu{
+			margin: 0px 10px;
+			cursor: pointer;
+
+			a{
+				text-decoration: none;
+				color: white;
+			}
+
+			.linha{
+				width: 0%;
+				border-top: 1px solid white;
+				transition: width 0.3s;
+
+			}
+
+			&:hover{
+				.linha{
+					width: 50%;
+				}
+			}
+		}
+	}
+}
