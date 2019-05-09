@@ -12,7 +12,7 @@
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.9); }
-  .view-index .titulos {
+  .view-index .painel {
     width: 70%;
     margin: 0 auto;
     padding: 50px 0;
@@ -21,18 +21,21 @@
     color: #fbf2ef;
     border-radius: 5px; }
     @media (max-width: 768px) {
-      .view-index .titulos {
+      .view-index .painel {
         width: 95%; } }
-    .view-index .titulos .titulo1 {
+    .view-index .painel .titulo1 {
       font-family: 'LongTime';
       font-size: 50px; }
-    .view-index .titulos .titulo2 {
+    .view-index .painel .titulo2 {
       font-size: 30px; }
-    .view-index .titulos .titulo3 {
+    .view-index .painel .titulo3 {
       padding-top: 20px;
       font-size: 20px; }
-    .view-index .titulos .titulo4 {
+    .view-index .painel .titulo4 {
       font-size: 15px; }
+    .view-index .painel form {
+      width: 400px;
+      margin: 20px auto 0 auto; }
   .view-index .copyright {
     position: absolute;
     bottom: 10px;
