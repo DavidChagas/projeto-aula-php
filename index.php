@@ -27,14 +27,14 @@
                         <div  class="painel">
                             <div class="titulo1">Bem Vindo!</div>
                             <div class="titulo2">Projeto Desenvolvimento Web</div>
-                            <form action="valida_login.php" method="post" name="formLogin">
+                            <form action="controller/valida_login.php" method="post" name="formLogin">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" name="usuario" placeholder="Usuário">
+                                    <input class="form-control" type="text" name="login" placeholder="Usuário">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" type="password" name="senha" placeholder="Senha">
                                 </div>
-                                <a class="btn btn-primary" type="submit">Acessar site</a>
+                                <button class="btn btn-primary" type="submit">Acessar site</button>
                             </form>
                         </div>
                     </div>
@@ -44,4 +44,3 @@
         </div>
     </body>
 </html>
-<!-- href="views/home/home.html" -->
