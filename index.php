@@ -27,12 +27,16 @@
                         <div  class="painel">
                             <div class="titulo1">Bem Vindo!</div>
                             <div class="titulo2">Projeto Desenvolvimento Web</div>
-                            <form action="controller/valida_login.php" method="post" name="formLogin">
+                            <div class="titulo3">Gerenciador de Finanças Pessoais</div>
+                            <form action="src/Controller/ValidaLogin.php" method="post" name="formLogin">
                                 <div class="form-group">
                                     <input class="form-control" type="text" name="login" placeholder="Usuário">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" type="password" name="senha" placeholder="Senha">
+                                </div>
+                                <div class="cadastrar-se">Não tem conta? 
+                                    <a href="src/View/Usuario/CadastroUsuario.php">Criar conta</a>
                                 </div>
                                 <button class="btn btn-primary" type="submit">Acessar site</button>
                             </form>

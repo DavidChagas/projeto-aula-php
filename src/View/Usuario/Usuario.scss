@@ -1,4 +1,4 @@
-.view-index{
+#view-cadastro-usuario{
 	position: relative;
     height: 100vh;
     width: 100vw;
@@ -6,7 +6,7 @@
     display: flex;
 
     align-items: center;
-    background-image: url(../images/bg-index.jpg);
+    background-image: url(../images/bg-cadastro.jpg);
     background-size: cover;
     background-position-x: right;
 
@@ -31,24 +31,9 @@
 			width: 95%;
 		}
 
-		.titulo1{
+		.titulo{
 			font-family: 'LongTime';
-			font-size: 50px;
-		}
-		.titulo2{
-			font-size: 20px;
-		}
-		.titulo3{
-			padding-top: 50px;
-			font-size: 40px;
-		}
-
-		.cadastrar-se{
-			margin-top: -15px;
-			margin-bottom: 20px;
-			
-			font-size: 15px;
-			text-align: end;
+			font-size: 30px;
 		}
 		
 		form{

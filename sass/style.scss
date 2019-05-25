@@ -2,10 +2,11 @@
 
 //Páginas
 @import "../index.scss";
-@import "../views/header/header.scss";
-@import "../views/contato/contato.scss";
-@import "../views/home/home.scss";
-@import "../views/footer/footer.scss";
+@import "../src/View/header/header.scss";
+@import "../src/View/contato/contato.scss";
+@import "../src/View/home/home.scss";
+@import "../src/View/Usuario/Usuario.scss";
+@import "../src/View/footer/footer.scss";
 
 //Fontes
 @import "../fonts/fonts.scss";

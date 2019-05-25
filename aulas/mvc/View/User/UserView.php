@@ -6,7 +6,7 @@
 	</head>
 
 	<body>
-		<form action="../../Controller/UserController.php" method="post" name="cadUser">
+		<form action="../../Controller/UserController.php?operation=cadastrar" method="post" name="cadUser">
 			<input type="text" name="txtUser" id="txtUser" placeholder="Usuario"/><br>
 			<input type="text" name="txtNome" id="txtNome" placeholder="Nome"/><br>
 			<input type="text" name="txtSobrenome" id="txtSobrenome" placeholder="Sobrenome"/><br>

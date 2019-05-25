@@ -27,12 +27,15 @@
       font-family: 'LongTime';
       font-size: 50px; }
     .view-index .painel .titulo2 {
-      font-size: 30px; }
-    .view-index .painel .titulo3 {
-      padding-top: 20px;
       font-size: 20px; }
-    .view-index .painel .titulo4 {
-      font-size: 15px; }
+    .view-index .painel .titulo3 {
+      padding-top: 50px;
+      font-size: 40px; }
+    .view-index .painel .cadastrar-se {
+      margin-top: -15px;
+      margin-bottom: 20px;
+      font-size: 15px;
+      text-align: end; }
     .view-index .painel form {
       width: 400px;
       margin: 20px auto 0 auto; }
@@ -105,6 +108,50 @@
   .view-home .titulo {
     text-align: center;
     font-size: 25px; }
+
+#view-cadastro-usuario {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  background-image: url(../images/bg-cadastro.jpg);
+  background-size: cover;
+  background-position-x: right; }
+  #view-cadastro-usuario .bg {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); }
+  #view-cadastro-usuario .painel {
+    width: 70%;
+    margin: 0 auto;
+    padding: 50px 0;
+    font-family: 'Montserrat-Light';
+    text-align: center;
+    color: #fbf2ef;
+    border-radius: 5px; }
+    @media (max-width: 768px) {
+      #view-cadastro-usuario .painel {
+        width: 95%; } }
+    #view-cadastro-usuario .painel .titulo {
+      font-family: 'LongTime';
+      font-size: 30px; }
+    #view-cadastro-usuario .painel form {
+      width: 400px;
+      margin: 20px auto 0 auto; }
+  #view-cadastro-usuario .copyright {
+    position: absolute;
+    bottom: 10px;
+    left: 41%;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center; }
+    @media (max-width: 768px) {
+      #view-cadastro-usuario .copyright {
+        left: 35%; } }
+  #view-cadastro-usuario .btn {
+    background-color: rgba(0, 0, 0, 0.1); }
 
 .view-footer {
   margin-top: 50px; }
