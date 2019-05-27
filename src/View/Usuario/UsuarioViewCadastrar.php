@@ -18,9 +18,12 @@
                     <div class="col-md-12">
                         <div  class="painel">
                             <div class="titulo">Cadastre-se para ter acesso ao sistema e poder fazer o gerenciamento de suas finanças.</div>
-                            <form action="../../controller/CadastrarUsuario.php" method="post" name="formLogin">
+                            <form action="../../Controller/UsuarioController.php?operacao=cadastrar" method="post" name="formLogin">
                                 <div class="form-group">
                                     <input class="form-control" type="text" name="nome" placeholder="Nome">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="cpf" placeholder="CPF">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" type="text" name="email" placeholder="E-mail">
@@ -29,7 +32,7 @@
                                     <input class="form-control" type="password" name="senha" placeholder="Senha">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" name="saldo" placeholder="Saldo inicial">
+                                    <input class="form-control" type="text" name="saldo_total" placeholder="Saldo inicial">
                                 </div>
                                 <a href="../../../index.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
                                 <button class="btn btn-primary" type="submit">Cadastrar</button>
