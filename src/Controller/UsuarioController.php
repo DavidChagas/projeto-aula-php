@@ -2,24 +2,26 @@
 
 session_start();
 
+include '../Include/UsuarioValidate.php';
 include '../Model/UsuarioModel.php';
 include '../DAO/UsuarioDAO.php';
 
 if(isset($_GET['operacao'])){
+
 	switch ($_GET['operacao']){
+
+		// 
+		// CADASTRAR
+		// 
 		case 'cadastrar':
+			$erros = array();
+			
 			if( (!empty($_POST['nome'])) && (!empty($_POST['cpf'])) && (!empty($_POST['email'])) && (!empty($_POST['senha'])) && (!empty($_POST['saldo_total']))){
 
-				$erros = array();
+				if(!UsuarioValidate::testarEmail($_POST['email'])){
+					$erros[] = 'Email inválido!';
+				}
 
-				// if(!UserValidate::testarIdade($_POST['txtIdade'])){
-				// 	$erros[] = 'Idade inválida!';
-				// }
-				// if(!UserValidate::testarEmail($_POST['txtEmail'])){
-				// 	$erros[] = 'Email inválido!';
-				// }
-
-		
 				if(count($erros) == 0){
 	                $usuario = new UsuarioModel();
 
@@ -32,24 +34,35 @@ if(isset($_GET['operacao'])){
 	                $usuarioDao = new UsuarioDAO();
 
 	                if($usuarioDao->inserirUsuario($usuario)){
-	                	$_SESSION['usuario'] = $usuario->nome;
 	                	header("location:../../index.php");
 	                }
 	                	            	
 		        }else{
 					$err = serialize($erros);
 					$_SESSION['erros'] = $err;
-					header("location:../View/User/UserViewError.php");
+					header("location:../View/Usuario/UsuarioViewError.php?"."erros=$err");
 				}
 
 			}else{
-				echo "Informe todos os campos!";
+				$erros[] = 'Informe todos os campos!';
+				$err = serialize($erros);
+				$_SESSION['erros'] = $err;
+				header("location:../View/Usuario/UsuarioViewError.php?"."erros=$err");
 			}
 		break;
 		
-		case 'consultar':
+		// 
+		// CONSULTAR
+		// 
+		case 'listar':
+			$usuarioDao = new UsuarioDAO();
+			$usuario = $usuarioDao->buscaUsuario($_SESSION['usuario_id']);
+
+			$_SESSION['usuario'] = serialize($usuario); 
 			
+			header("location:../View/Usuario/UsuarioViewListar.php");
 		break;
+
 
 		case 'excluir':
 			echo "Aqui é excluir";
@@ -59,13 +72,27 @@ if(isset($_GET['operacao'])){
 			if( (!empty($_POST['login'])) && (!empty($_POST['senha'])) ){
 
 				$usuarioDao = new UsuarioDAO();
+				$resultado = $usuarioDao->validaLogin($_POST['login'], $_POST['senha']);
 
-				if($usuarioDao->validaLogin($_POST['login'], $_POST['senha'])){
-					header("location:../View/home/home.html");
+				if($resultado){
+					$usuario =  $resultado[0];
+					$_SESSION['usuario_logado'] = true;
+					$_SESSION['usuario_id']  = $usuario['id'];
+					$_SESSION['usuario_nome'] = $usuario['nome'];
+
+					header("location:../View/Home/Home.php");
 				}else{
 					header("location:../../loginError.php");
 				}
+			}else{
+				header("location:../../loginError.php");
 			}
+		break;
+
+		case 'sair':
+			$_SESSION['usuario_logado'] = false;
+			$_SESSION['usuario_id']  = 0;
+			header("location:../../index.php");
 		break;
 	}
 }

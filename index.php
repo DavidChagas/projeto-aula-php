@@ -19,7 +19,7 @@
     </head>
 
     <body>
-        <div class="view-index">
+        <div id="view-index">
             <div class="bg"></div>
             <div class="container">
                 <div class="row">

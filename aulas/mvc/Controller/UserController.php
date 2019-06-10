@@ -58,8 +58,8 @@ if(isset($_GET['operation'])){
 				}else{
 					$err = serialize($erros);
 					$_SESSION['erros'] = $err;
-					header("location:../View/User/UserViewError.php");
-					// header("location:../View/User/UserViewError.php?"."erros=$err");
+					// header("location:../View/User/UserViewError.php");
+					header("location:../View/User/UserViewError.php?"."erros=$err");
 				}
 
 			}else{

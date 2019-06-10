@@ -1,0 +1,68 @@
+#contas-view-listar{
+	font-family: 'Montserrat-Light';
+
+	.painel{
+		text-align: center;
+
+		.titulo{
+			font-family: 'LongTime';
+			margin-bottom: 20px;
+			font-size: 25px;
+			font-weight: bold;
+		}
+		.informacoes{
+			margin-bottom: 30px;
+			padding: 30px 0;
+			border-radius: 5px;
+			text-align: center;
+			background-color: #f9f9f9;
+			box-shadow: 1px 1px 2px #aaa;
+
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			
+			.conta{
+				margin: 10px;
+				padding-bottom: 10px;
+				border-radius: 5px;
+				background-color: #ced5e6;
+
+				.informacao-principal{
+					padding: 3px 0;
+					color: white;
+					font-size: 20px;
+					font-weight: bold;
+
+					border-radius: 5px;
+					background-color: #909cbd;
+				}
+				.informacao{
+					font-weight: bold;
+					margin: 10px;
+				}
+				button{
+					margin-left: 5px;
+				}
+			}
+
+			.campo-adicionar{
+				margin: 10px;
+				border-radius: 5px;
+				background-color: #ced5e6;
+				display: flex;
+
+				&:hover{
+					cursor: pointer;
+					box-shadow: 1px 1px 3px #aaa;
+				}
+				a{
+					width: 100%;
+
+					img{
+						margin: 20% auto;
+					}
+				}
+			}
+		}
+	}
+}

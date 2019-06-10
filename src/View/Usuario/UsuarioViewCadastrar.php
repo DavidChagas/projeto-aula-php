@@ -6,12 +6,12 @@
         <link href="../../../css/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="../../../node_modules/bootstrap/compiler/bootstrap.css">
 
-        <title>Cadastrar-se</title>
+        <title>Cadastrar</title>
         <link href="../../../images/logo-php.png" rel="icon" type="image/x-png" />
    </head>
 
     <body>
-        <div id="view-cadastro-usuario">
+        <div id="usuario-view-cadastrar">
             <div class="bg"></div>
             <div class="container">
                 <div class="row">

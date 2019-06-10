@@ -23,20 +23,12 @@
                 $("#includeFooter").load("../footer/footer.html");
                 $("#includeMenuLateral").load("../MenuLateral/MenuLateral.php");
             });
-
-            function excluir(conta_id){
-                if(confirm("Deseja realmente apagar esta conta?")){
-                    window.location.href="../../Controller/ContasController.php?operacao=excluir&id="+conta_id;
-                }else{
-                    return false;
-                }
-            }
         </script> 
    </head>
 
     <body>
         <div id="includeHeader"></div>
-        <div id="contas-view-listar">
+        <div id="usuario-view-listar">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
@@ -44,30 +36,23 @@
                     </div>
                     <div class="col-md-9">
                         <div class="painel">
-                            <div class="titulo">Minhas Contas</div>
+                            <div class="titulo">Minhas Informações</div>
                             <div class="informacoes">
-                               <?php
+                                <?php
                                     session_start();
-                                    include_once '../../Model/ContasModel.php';
                                     
-                                    $contas = array();
-                                    $contas = unserialize($_SESSION['contas']);
+                                    $usuario = unserialize($_SESSION['usuario']);
 
-                                    foreach ($contas as $conta) {
-                                        echo '<div class="conta">';
-                                            echo '<div class="informacao-principal">'.$conta->tipo.'</div>';
-                                            echo '<div class="informacao">Saldo total: R$ '.$conta->saldo.'</div>';
-                                            echo '<div class="informacao">Limite de despesas: R$ '.$conta->limite_despesas.'</div>';
-                                            echo '<a href="ContasViewCadastrar.php?id='.$conta->id.'"><button class="btn btn-primary">Editar</button></a>';
-                                            echo '<a onclick="excluir('.$conta->id.')"><button class="btn btn-danger">Excluir</button></a>';
-                                        echo '</div>';
-                                    }
+                                    echo '<div class="informacao">' . 'Nome: ' . $usuario['nome'] . '</div>';
+
+                                    echo '<div class="informacao">' . 'CPF: ' . $usuario['cpf'] . '</div>';
+
+                                    echo '<div class="informacao">' . 'E-mail: ' . $usuario['email'] . '</div>';
+
+                                    echo '<div class="informacao">' . 'Saldo Total: R$' . $usuario['saldo_total'] . '</div>';
                                 ?>
-                                <div class="campo-adicionar">
-                                    <a href="ContasViewCadastrar.php">
-                                        <img class="img-responsive" src="../../../images/add.png">
-                                    </a>
-                                </div>
+                                <button class="btn btn-outline-primary">Atualizar dados</button>
+                                <button class="btn btn-outline-danger">Remover minha conta</button>
                             </div>
                         </div>
                     </div>

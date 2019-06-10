@@ -11,7 +11,7 @@
 	        $this->conexao = conexao::getInstance();
 	    }
 
-		function validaLogin($login, $senha){
+		public function validaLogin($login, $senha){
 		
 	        $status = $this->conexao->prepare("SELECT * FROM usuario WHERE nome = ? && senha = ?");
 
@@ -23,27 +23,12 @@
 	        //Encerra a conexão com o banco
 	        $this->conexao = null;
 
-	        $resultado = $status->fetch();
+	        $resultado = $status->fetchAll();
 
 	        return $resultado;
-		   
-
-
-			// $sql = "SELECT * FROM usuarios WHERE login = :login && senha = :senha";
-			
-			// global $conexao;
-			// $stmt = $conexao->prepare($sql);
-
-			// $stmt->bindValue(':login', $login);
-			// $stmt->bindValue(':senha', $senha);
-			// $stmt->execute();
-
-			// $resultado = $stmt->fetchAll();
-			
-			// return $resultado;
 		}
 
-		function inserirUsuario($usuario){
+		public function inserirUsuario($usuario){
 			try{
 		        $status = $this->conexao->prepare("Insert Into usuario(id, nome, cpf, email, senha, saldo_total) values (null,?,?,?,?,?)");
 
@@ -62,6 +47,24 @@
 		    	return false;
 		    	// echo "Ocorreram erros ao inserir novo usuario !";
 		    }
+		}
+
+		public function buscaUsuario($usuario_id){
+			try{
+				$status = $this->conexao->prepare("SELECT * FROM usuario WHERE id = ?");
+
+				$status->bindValue(1, $usuario_id);
+
+				$status->execute();
+
+	            $resultado = $status->fetchAll();
+
+	            $this->conexao = null;
+
+	            return $resultado[0];
+	        } catch (PDOException $e){
+	            echo 'Ocorreram erros ao buscar o usuário' . $e;
+	        }
 		}
 	}
 ?>

@@ -7,10 +7,10 @@
 
         <!-- Bootstrap CSS -->
         <link href="../../../css/style.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="../../../node_modules/bootstrap/compiler/bootstrap.css">
+        <link rel="stylesheet" href=../../../node_modules/bootstrap/compiler/bootstrap.css>
 
-        <title>Contato</title>
-        <link href="../../../images/logo-contato.png" rel="icon" type="image/x-png" />
+        <title>Projeto Web</title>
+        <link href="../../../images/logo-php.png" rel="icon" type="image/x-png" />
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="../../../node_modules/jquery/dist/jquery.js"></script>
@@ -21,26 +21,29 @@
             $(function(){
                 $("#includeHeader").load("../header/header.html");
                 $("#includeFooter").load("../footer/footer.html");
+                $("#includeMenuLateral").load("../MenuLateral/MenuLateral.php");
             });
         </script> 
     </head>
 
     <body>
         <div id="includeHeader"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="view-contato">
-                        <div class="borda" >
-                            <div class="foto"></div>
-                        </div>
+        <div class="view-home">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div id="includeMenuLateral"></div>
+                    </div>
+                    <div class="col-md-9">
                         <div class="conteudo">
-                            <p><label style="font-weight: 500">Nome:</label> David Chagas</p>
-                            <p><label style="font-weight: 500">Idade:</label> 22 anos</p>
-                            <p><label style="font-weight: 500">Cidade:</label> Guaporé</p>
-                            <p><label style="font-weight: 500">E-mail:</label> davidmdchagas@hotmail.com</p>
-                            <p><label style="font-weight: 500">Telefone:</label> (54) 996947221</p>
-                        </div> 
+                            Página Home!!!! <br>
+                            Seja bem vindo 
+                            <?php
+                                session_start();
+                                
+                                echo $_SESSION['usuario_nome']
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

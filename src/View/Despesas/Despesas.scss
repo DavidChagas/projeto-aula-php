@@ -1,0 +1,33 @@
+#despesas-view-listar{
+	font-family: 'Montserrat-Light';
+
+	.titulo{
+		text-align: center;
+		font-family: 'LongTime';
+		margin-bottom: 20px;
+		font-size: 25px;
+		font-weight: bold;
+	}
+
+	.informacoes{
+		margin-top: 50px;
+
+		.informacao{
+			padding: 10px 0;
+			text-align: center;
+			border-radius: 5px;
+			box-shadow: 1px 1px 4px #ddd;
+
+			.item{
+				font-weight: bold;
+			}
+			img{
+				width: 40px;
+			}
+		}
+	}
+
+	.filtros{
+		margin-top: 40px;
+	}
+}

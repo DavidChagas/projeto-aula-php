@@ -1,4 +1,4 @@
-.view-index {
+#view-index {
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -7,12 +7,12 @@
   background-image: url(../images/bg-index.jpg);
   background-size: cover;
   background-position-x: right; }
-  .view-index .bg {
+  #view-index .bg {
     position: absolute;
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.9); }
-  .view-index .painel {
+  #view-index .painel {
     width: 70%;
     margin: 0 auto;
     padding: 50px 0;
@@ -21,25 +21,25 @@
     color: #fbf2ef;
     border-radius: 5px; }
     @media (max-width: 768px) {
-      .view-index .painel {
+      #view-index .painel {
         width: 95%; } }
-    .view-index .painel .titulo1 {
+    #view-index .painel .titulo1 {
       font-family: 'LongTime';
       font-size: 50px; }
-    .view-index .painel .titulo2 {
+    #view-index .painel .titulo2 {
       font-size: 20px; }
-    .view-index .painel .titulo3 {
+    #view-index .painel .titulo3 {
       padding-top: 50px;
       font-size: 40px; }
-    .view-index .painel .cadastrar-se {
+    #view-index .painel .cadastrar-se {
       margin-top: -15px;
       margin-bottom: 20px;
       font-size: 15px;
       text-align: end; }
-    .view-index .painel form {
+    #view-index .painel form {
       width: 400px;
       margin: 20px auto 0 auto; }
-  .view-index .copyright {
+  #view-index .copyright {
     position: absolute;
     bottom: 10px;
     left: 41%;
@@ -47,9 +47,9 @@
     font-size: 13px;
     text-align: center; }
     @media (max-width: 768px) {
-      .view-index .copyright {
+      #view-index .copyright {
         left: 35%; } }
-  .view-index .btn {
+  #view-index .btn {
     background-color: rgba(0, 0, 0, 0.1); }
 
 .view-header {
@@ -82,6 +82,25 @@
       .view-header .menu .item-menu:hover .linha {
         width: 50%; }
 
+.menu-lateral {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  font-family: 'Montserrat-Regular';
+  background-color: White; }
+  .menu-lateral a .item-menu {
+    text-decoration: none;
+    color: black;
+    margin: 20px 30px;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: 1px solid white;
+    transition: all 0.3s; }
+    .menu-lateral a .item-menu:hover {
+      cursor: pointer;
+      border: 1px solid #ddd;
+      background-color: #eee; }
+
 .view-contato .borda {
   height: 100px;
   width: 100px;
@@ -105,11 +124,18 @@
 
 .view-home {
   font-family: 'Montserrat-Regular'; }
-  .view-home .titulo {
-    text-align: center;
-    font-size: 25px; }
 
-#view-cadastro-usuario {
+#usuario-view-error {
+  margin-top: 100px;
+  text-align: center;
+  font-family: 'Montserrat-Light'; }
+  #usuario-view-error .titulo {
+    font-weight: bold;
+    font-size: 30px; }
+  #usuario-view-error .btn {
+    margin-top: 10px; }
+
+#usuario-view-cadastrar {
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -118,12 +144,12 @@
   background-image: url(../images/bg-cadastro.jpg);
   background-size: cover;
   background-position-x: right; }
-  #view-cadastro-usuario .bg {
+  #usuario-view-cadastrar .bg {
     position: absolute;
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.8); }
-  #view-cadastro-usuario .painel {
+  #usuario-view-cadastrar .painel {
     width: 70%;
     margin: 0 auto;
     padding: 50px 0;
@@ -132,15 +158,15 @@
     color: #fbf2ef;
     border-radius: 5px; }
     @media (max-width: 768px) {
-      #view-cadastro-usuario .painel {
+      #usuario-view-cadastrar .painel {
         width: 95%; } }
-    #view-cadastro-usuario .painel .titulo {
+    #usuario-view-cadastrar .painel .titulo {
       font-family: 'LongTime';
       font-size: 30px; }
-    #view-cadastro-usuario .painel form {
+    #usuario-view-cadastrar .painel form {
       width: 400px;
       margin: 20px auto 0 auto; }
-  #view-cadastro-usuario .copyright {
+  #usuario-view-cadastrar .copyright {
     position: absolute;
     bottom: 10px;
     left: 41%;
@@ -148,13 +174,96 @@
     font-size: 13px;
     text-align: center; }
     @media (max-width: 768px) {
-      #view-cadastro-usuario .copyright {
+      #usuario-view-cadastrar .copyright {
         left: 35%; } }
-  #view-cadastro-usuario .btn {
+  #usuario-view-cadastrar .btn {
     background-color: rgba(0, 0, 0, 0.1); }
 
+#usuario-view-listar {
+  text-align: center; }
+  #usuario-view-listar .titulo {
+    margin-bottom: 20px;
+    font-size: 25px; }
+  #usuario-view-listar .informacoes {
+    padding: 30px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 1px 1px 2px #aaa; }
+    #usuario-view-listar .informacoes .informacao {
+      margin-bottom: 20px; }
+
+#contas-view-listar {
+  font-family: 'Montserrat-Light'; }
+  #contas-view-listar .painel {
+    text-align: center; }
+    #contas-view-listar .painel .titulo {
+      font-family: 'LongTime';
+      margin-bottom: 20px;
+      font-size: 25px;
+      font-weight: bold; }
+    #contas-view-listar .painel .informacoes {
+      margin-bottom: 30px;
+      padding: 30px 0;
+      border-radius: 5px;
+      text-align: center;
+      background-color: #f9f9f9;
+      box-shadow: 1px 1px 2px #aaa;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); }
+      #contas-view-listar .painel .informacoes .conta {
+        margin: 10px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+        background-color: #ced5e6; }
+        #contas-view-listar .painel .informacoes .conta .informacao-principal {
+          padding: 3px 0;
+          color: white;
+          font-size: 20px;
+          font-weight: bold;
+          border-radius: 5px;
+          background-color: #909cbd; }
+        #contas-view-listar .painel .informacoes .conta .informacao {
+          font-weight: bold;
+          margin: 10px; }
+        #contas-view-listar .painel .informacoes .conta button {
+          margin-left: 5px; }
+      #contas-view-listar .painel .informacoes .campo-adicionar {
+        margin: 10px;
+        border-radius: 5px;
+        background-color: #ced5e6;
+        display: flex; }
+        #contas-view-listar .painel .informacoes .campo-adicionar:hover {
+          cursor: pointer;
+          box-shadow: 1px 1px 3px #aaa; }
+        #contas-view-listar .painel .informacoes .campo-adicionar a {
+          width: 100%; }
+          #contas-view-listar .painel .informacoes .campo-adicionar a img {
+            margin: 20% auto; }
+
+#despesas-view-listar {
+  font-family: 'Montserrat-Light'; }
+  #despesas-view-listar .titulo {
+    text-align: center;
+    font-family: 'LongTime';
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold; }
+  #despesas-view-listar .informacoes {
+    margin-top: 50px; }
+    #despesas-view-listar .informacoes .informacao {
+      padding: 10px 0;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 1px 1px 4px #ddd; }
+      #despesas-view-listar .informacoes .informacao .item {
+        font-weight: bold; }
+      #despesas-view-listar .informacoes .informacao img {
+        width: 40px; }
+  #despesas-view-listar .filtros {
+    margin-top: 40px; }
+
 .view-footer {
-  margin-top: 50px; }
+  margin: 50px 0; }
   .view-footer .descricao {
     text-align: center;
     font-size: 11px;
