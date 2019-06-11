@@ -60,67 +60,86 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>    
-                        
+                        </div>
                         <div class="filtros">
-                            <form action=" ../../Controller/DespesasController.php?operacao=listar" method="post" name="formDespesas">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <select id="mes" class="form-control">
-                                                <option selected>Filtre por mês</option>
-                                                <option>Janeiro</option>
-                                                <option>Fevereiro</option>
-                                                <option>Março</option>
-                                                <option>Abril</option>
-                                                <option>Maio</option>
-                                                <option>Junho</option>
-                                                <option>Julho</option>
-                                                <option>Agosto</option>
-                                                <option>Setembro</option>
-                                                <option>Outubro</option>
-                                                <option>Novembro</option>
-                                                <option>Dezembro</option>
-                                              </select>
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form action=" ../../Controller/DespesasController.php?operacao=listar" method="post" name="formDespesas">
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <select id="mes" class="form-control">
+                                                        <option selected>Filtre por mês</option>
+                                                        <option>Janeiro</option>
+                                                        <option>Fevereiro</option>
+                                                        <option>Março</option>
+                                                        <option>Abril</option>
+                                                        <option>Maio</option>
+                                                        <option>Junho</option>
+                                                        <option>Julho</option>
+                                                        <option>Agosto</option>
+                                                        <option>Setembro</option>
+                                                        <option>Outubro</option>
+                                                        <option>Novembro</option>
+                                                        <option>Dezembro</option>
+                                                      </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text" name="ano" placeholder="Filtre por ano">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-primary" type="submit" style="width: 100%;">Filtrar</button>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <input class="form-control" type="text" name="ano" placeholder="Filtre por ano">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button class="btn btn-primary" type="submit" style="width: 100%;">Filtrar</button>
-                                    </div>
-                                    </form>
                                 </div>
                             </div>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Pago</th>
+                                                <th scope="col">Descrição</th>
+                                                <th scope="col">Conta</th>
+                                                <th scope="col">Categoria</th>
+                                                <th scope="col">Valor</th>
+                                                <th scope="col">Data</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                if(isset($_SESSION['despesas'])){
+                                                    include_once '../../Model/DespesasModel.php';
+                                                    $despesas = array();
+                                                    $despesas = unserialize($_SESSION['despesas']);
 
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Pago</th>
-                                    <th scope="col">Descrição</th>
-                                    <th scope="col">Conta</th>
-                                    <th scope="col">Categoria</th>
-                                    <th scope="col">Valor</th>
-                                    <th scope="col">Data</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                                    foreach ($despesas as $despesa) {
+                                                        echo '<tr>';
+                                                        echo "<td><a href='../../Controller/UserController.php?operation=excluirid=$u->id'>Deletar</a></td> -";
+                                                        echo "$u->nome<br>";
+                                                        echo '</tr>';
+                                                    }
+                                                    unset($_SESSION['users']);
+                                                }
+                                            ?>
+                                            <tr>
+                                                <th>1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>    
                     </div>
                 </div>
             </div>
-        </div>
         <div id="includeFooter"></div>
     </body>
 </html>

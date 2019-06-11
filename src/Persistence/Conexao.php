@@ -13,7 +13,7 @@ class Conexao extends PDO{
             try {
                 //Cria uma conexão e retorna a instancia dela
                 self::$instance = new Conexao("mysql:dbname=gerenciador-financas;host=localhost","root","");
-                echo "Conectado ao banco de dados !";
+                // echo "Conectado ao banco de dados !";
             } catch (Exception $e) {
                 echo "Ocorreram erros ao tentar conectar no banco de dados !!";
                 echo "$e";

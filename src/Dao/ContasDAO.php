@@ -1,7 +1,5 @@
 <?php
-
-
-	include '../Persistence/Conexao.php';
+	
 
 	class ContasDAO {
 	    private $conexao = null;
@@ -29,16 +27,17 @@
 		    }
 		}
 
-		public function buscaConta($conta_id){
+		public function buscarConta($conta_id){
+
 			try{
-				$status = $this->conexao->prepare("SELECT * FROM contas WHERE id = ?");
+				$status = $this->conexao->prepare("SELECT * FROM conta WHERE id = ?");
 				$status->bindValue(1, $conta_id);
 				$status->execute();
 
 	            $resultado = $status->fetchAll();
 
 	            $this->conexao = null;
-
+	           
 	            return $resultado[0];
 	        } catch (PDOException $e){
 	            echo 'Ocorreram erros ao buscar o conta' . $e;
@@ -52,7 +51,7 @@
 				$status->execute();
 
 	            $array = array();
-	            $array = $status->fetchAll(PDO::FETCH_CLASS, 'ContasModel');
+	            $array = $status->fetchAll(PDO::FETCH_OBJ);
 
 	            $this->connection = null;
 

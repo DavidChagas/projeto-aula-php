@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+include '../Persistence/Conexao.php';
 include '../Model/ContasModel.php';
 include '../DAO/ContasDAO.php';
 
@@ -52,6 +52,17 @@ if(isset($_GET['operacao'])){
 			header("location:../View/Contas/ContasViewListar.php");
 		break;
 
+		//
+		// EDITAR
+		//
+		case 'editar':
+
+		break;
+
+
+		//
+		// EXCLUIR
+		//
 		case 'excluir':
 			$contasDao = new ContasDAO();
 			$conta_id = $_GET['id'];

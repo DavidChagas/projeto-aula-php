@@ -260,7 +260,9 @@
       #despesas-view-listar .informacoes .informacao img {
         width: 40px; }
   #despesas-view-listar .filtros {
-    margin-top: 40px; }
+    margin-top: 50px; }
+  #despesas-view-listar .table {
+    margin-top: 50px; }
 
 .view-footer {
   margin: 50px 0; }

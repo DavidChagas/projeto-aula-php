@@ -1,19 +1,18 @@
 <!doctype html>
 <?php
-    if(isset($_GET['id'])){
+    $conta_id = $_GET['contaId'];
+    if(isset($conta_id)){
         session_start();
 
-        require __DIR__ . '/../../Persistence/Conexao.php';
+        include "../../Persistence/Conexao.php";
         include "../../DAO/ContasDAO.php";
+
         $contasDao = new ContasDAO();
-
-        $usuario_id = $_SESSION['usuario_id'];
-        $contas = $contasDao->buscarContas($usuario_id);
         
-        $nome = $contas['nome'];
-
-        $acao = "editar";
-        $tipo = "";
+        $conta = $contasDao->buscarConta($conta_id);
+        $tipo = $conta['tipo'];
+        $saldo = $conta['saldo'];
+        $limite = $conta['limite_despesas'];
     }else{
         $acao = "cadastrar";
     }
@@ -58,13 +57,13 @@
                             <div class="titulo">Adicionar nova Conta</div>
                             <form action=" ../../Controller/ContasController.php?operacao=<?php echo $acao ?>" method="post" name="formConta">
                                 <div class="form-group">
-                                    <input class="form-control" type="text" name="tipo" value="" placeholder="Tipo da conta. Ex: Poupança.">
+                                    <input class="form-control" type="text" name="tipo" value="<?php echo $tipo ?>" placeholder="Tipo da conta. Ex: Poupança.">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" name="saldo" placeholder="Saldo inicial da conta.">
+                                    <input class="form-control" type="text" name="saldo" value="<?php echo $saldo ?>" placeholder="Saldo inicial da conta.">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" type="text" name="limite_despesas" placeholder="Limite de despesas.">
+                                    <input class="form-control" type="text" name="limite_despesas" value="<?php echo $limite ?>" placeholder="Limite de despesas.">
                                 </div>
                                 <a href="../../View/Contas/ContasViewListar.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
                                 <button class="btn btn-primary" type="submit">Cadastrar</button>
