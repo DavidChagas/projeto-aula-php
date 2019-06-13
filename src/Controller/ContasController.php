@@ -24,6 +24,7 @@ if(isset($_GET['operacao'])){
                 $contasDao = new ContasDAO();
 
                 if($contasDao->inserirConta($conta)){
+                	// Busca no banco as informacoes atualizadas para ir para a pág listar
                 	$contasDao = new ContasDAO();
 
 					$contas = array();
@@ -56,7 +57,32 @@ if(isset($_GET['operacao'])){
 		// EDITAR
 		//
 		case 'editar':
+		
+			if( (!empty($_POST['tipo'])) && (!empty($_POST['saldo'])) && (!empty($_POST['limite_despesas']))){
+				$conta = new ContasModel();
 
+				$conta->id =  $_GET['conta_id'];
+                $conta->tipo = $_POST['tipo'];
+                $conta->saldo = $_POST['saldo'];
+                $conta->limite_despesas = $_POST['limite_despesas'];
+
+                $contasDao = new ContasDAO();
+
+                if($contasDao->EditarConta($conta)){
+                	// Busca no banco as informacoes atualizadas para ir para a pág listar
+                	$contasDao = new ContasDAO();
+
+					$contas = array();
+					$usuario_id = $_SESSION['usuario_id'];
+					$contas = $contasDao->buscarContas($usuario_id);
+					$_SESSION['contas'] = serialize($contas);
+					header("location:../View/Contas/ContasViewListar.php");
+                }else{
+                	echo 'Erro ao inserir conta';
+                }
+	        }else{
+				echo 'Informe todos os campos!';
+			}
 		break;
 
 

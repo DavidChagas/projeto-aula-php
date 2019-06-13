@@ -27,6 +27,25 @@
 		    }
 		}
 
+		public function EditarConta($conta){
+			try{
+		        $status = $this->conexao->prepare("UPDATE conta SET tipo = ?, saldo = ?, limite_despesas = ? WHERE id = ?;");
+
+		        $status->bindValue(1, $conta->tipo);
+		        $status->bindValue(2, $conta->saldo);
+		        $status->bindValue(3, $conta->limite_despesas);
+		        $status->bindValue(4, $conta->id);
+		        
+		        $status->execute();
+		       
+		        //Encerra a conexão com o banco
+		        $this->conexao = null;
+		        return true;
+		    } catch (PDOException $e) {
+		    	return false;
+		    }
+		}
+
 		public function buscarConta($conta_id){
 
 			try{

@@ -1,8 +1,11 @@
 <!doctype html>
 <?php
-    $conta_id = $_GET['contaId'];
-    if(isset($conta_id)){
-        session_start();
+    session_start();
+
+    if(isset($_GET['contaId'])){
+        $acao = "editar";
+
+        $conta_id = $_GET['contaId'];
 
         include "../../Persistence/Conexao.php";
         include "../../DAO/ContasDAO.php";
@@ -15,6 +18,9 @@
         $limite = $conta['limite_despesas'];
     }else{
         $acao = "cadastrar";
+        $tipo = "";
+        $saldo = "";
+        $limite = "";
     }
 ?>
 <html lang="pt">
@@ -55,7 +61,7 @@
                     <div class="col-md-9">
                         <div  class="painel">
                             <div class="titulo">Adicionar nova Conta</div>
-                            <form action=" ../../Controller/ContasController.php?operacao=<?php echo $acao ?>" method="post" name="formConta">
+                            <form action=" ../../Controller/ContasController.php?operacao=<?php echo $acao; if(isset($conta_id)) echo '&conta_id='.$conta_id ?>" method="post" name="formConta">
                                 <div class="form-group">
                                     <input class="form-control" type="text" name="tipo" value="<?php echo $tipo ?>" placeholder="Tipo da conta. Ex: Poupança.">
                                 </div>
@@ -65,8 +71,8 @@
                                 <div class="form-group">
                                     <input class="form-control" type="text" name="limite_despesas" value="<?php echo $limite ?>" placeholder="Limite de despesas.">
                                 </div>
+                                <button class="btn btn-primary" type="submit"><?php if(isset($conta_id)) echo 'Editar'; else echo 'Cadastrar' ?></button>
                                 <a href="../../View/Contas/ContasViewListar.php"><button type="button" class="btn btn-danger">Cancelar</button></a>
-                                <button class="btn btn-primary" type="submit">Cadastrar</button>
                             </form>
                         </div>
                     </div>
