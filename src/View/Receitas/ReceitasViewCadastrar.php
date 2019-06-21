@@ -3,34 +3,34 @@
     session_start();
     include "../../Persistence/Conexao.php";
     include "../../DAO/ContasDAO.php";
-    include "../../DAO/CategoriaDespesaDAO.php";
+    include "../../DAO/CategoriaReceitaDAO.php";
 
     $usuario_id = $_SESSION['usuario_id'];
 
     $contasDao = new ContasDAO();
-    $categoriaDAO = new CategoriaDespesaDAO();
+    $categoriaDAO = new CategoriaReceitaDAO();
 
     $contas = array();
     $categorias = array();
     $contas = $contasDao->buscarContas($usuario_id);
     $categorias = $categoriaDAO->buscarCategorias($usuario_id);
 
-    if(isset($_GET['despesaId'])){
-        $despesa_id = $_GET['despesaId'];
+    if(isset($_GET['receitaId'])){
+        $receita_id = $_GET['receitaId'];
 
-        include "../../DAO/DespesasDAO.php";
+        include "../../DAO/ReceitasDAO.php";
 
-        $despesasDao = new DespesasDAO();
-        $despesa = $despesasDao->buscarDespesa($despesa_id);
+        $receitasDao = new ReceitasDAO();
+        $receita = $receitasDao->buscarReceita($receita_id);
 
         $acao = "editar";
 
-        $descricao = $despesa['descricao'];
-        $valor = $despesa['valor'];
-        $data = $despesa['data'];
-        $conta_id = $despesa['conta_id'];
-        $categoria_despesa_id = $despesa['categoria_despesa_id'];
-        $pago = $despesa['pago'];
+        $descricao = $receita['descricao'];
+        $valor = $receita['valor'];
+        $data = $receita['data'];
+        $conta_id = $receita['conta_id'];
+        $categoria_receita_id = $receita['categoria_receita_id'];
+        $recebido = $receita['recebido'];
     }else{
         $acao = "cadastrar";
 
@@ -38,8 +38,8 @@
         $valor = "";
         $data = "";
         $conta_id = "";
-        $categoria_despesa_id = "";
-        $pago = "";
+        $categoria_receita_id = "";
+        $recebido = "";
     }
 ?>
 <html lang="pt">
@@ -52,7 +52,7 @@
         <link href="../../../css/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href=../../../node_modules/bootstrap/compiler/bootstrap.css>
 
-        <title>Minha Informações</title>
+        <title>Cadastrar Receita</title>
         <link href="../../../images/logo-php.png" rel="icon" type="image/x-png" />
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -71,15 +71,15 @@
 
     <body>
         <div id="includeHeader"></div>
-        <div id="despesas-view-cadastrar">
+        <div id="receitas-view-cadastrar">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div id="includeMenuLateral"></div>
                     </div>
                     <div class="col-md-9">
-                        <div class="titulo">Adicionar nova Despesa</div>
-                        <form action=" ../../Controller/DespesasController.php?operacao=<?php echo $acao; if(isset($despesa_id)) echo '&despesa_id='.$despesa_id ?>" method="post" name="formDespesa">
+                        <div class="titulo">Adicionar nova Receita</div>
+                        <form action=" ../../Controller/ReceitasController.php?operacao=<?php echo $acao; if(isset($receita_id)) echo '&receita_id='.$receita_id ?>" method="post" name="formReceita">
                             <div class="form-group">
                                 <input class="form-control" type="text" name="descricao" value="<?php echo $descricao ?>" placeholder="Descrição">
                             </div>
@@ -100,8 +100,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="categoria_despesa_id">
-                                    <option value="<?php echo $categoria_despesa_id ?>">Selecione uma categoria</option>
+                                <select class="form-control" name="categoria_receita_id">
+                                    <option value="<?php echo $categoria_receita_id ?>">Selecione uma categoria</option>
                                     <?php
                                         foreach ($categorias as $categoria) {
                                             echo '<option value="'.$categoria->id.'">'.$categoria->nome.'</option>';
@@ -110,16 +110,16 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="pago">
-                                    <option value="<?php echo $pago ?>">Pago?</option>
+                                <select class="form-control" name="recebido">
+                                    <option value="<?php echo $recebido ?>">Recebido?</option>
                                     <option value="Sim">Sim</option>
                                     <option value="Nao">Não</option>
                                 </select>
                             </div>
                             <button class="btn btn-primary" type="submit">
-                                <?php if(isset($despesa_id)) echo 'Editar'; else echo 'Cadastrar' ?>
+                                <?php if(isset($receita_id)) echo 'Editar'; else echo 'Cadastrar' ?>
                             </button>
-                            <a href="../../View/Despesas/DespesasViewListar.php">
+                            <a href="../../View/Receitas/ReceitasViewListar.php">
                                 <button type="button" class="btn btn-danger">Cancelar</button>
                             </a>
                         </form>

@@ -1,21 +1,21 @@
 <!doctype html>
 <?php
     session_start();
-    include_once '../../Model/DespesasModel.php';
-    $despesas = array();
-    $despesas = unserialize($_SESSION['despesas']);
+    include_once '../../Model/ReceitasModel.php';
+    $receitas = array();
+    $receitas = unserialize($_SESSION['receitas']);
 
-    $totalDespesas = 0;
-    $totalDespesasPagas = 0;
-    $totalDespesasNaoPagas = 0;
+    $totalReceitas = 0;
+    $totalRecebido = 0;
+    $totalPendente = 0;
 
-    foreach ($despesas as $despesa) {
-        $totalDespesas = $totalDespesas + $despesa->valor; 
+    foreach ($receitas as $receita) {
+        $totalReceitas = $totalReceitas + $receita->valor; 
 
-        if ($despesa->pago == 'Sim') {
-            $totalDespesasPagas = $totalDespesasPagas + $despesa->valor;
+        if ($receita->recebido == 'Sim') {
+            $totalRecebido = $totalRecebido + $receita->valor;
         } else {
-            $totalDespesasNaoPagas = $totalDespesasNaoPagas + $despesa->valor;
+            $totalPendente = $totalPendente + $receita->valor;
         }
     }
 ?>
@@ -41,12 +41,12 @@
             $(function(){
                 $("#includeHeader").load("../header/header.html");
                 $("#includeFooter").load("../footer/footer.html");
-                $("#includeMenuLateral").load("../MenuLateral/MenuLateral.php");nome
+                $("#includeMenuLateral").load("../MenuLateral/MenuLateral.php");
             });
 
-            function excluir(despesa_id){
-                if(confirm("Deseja realmente apagar esta despesa?")){
-                    window.location.href="../../Controller/DespesasController.php?operacao=excluir&id="+despesa_id;
+            function excluir(receita_id){
+                if(confirm("Deseja realmente apagar esta receita?")){
+                    window.location.href="../../Controller/ReceitasController.php?operacao=excluir&id="+receita_id;
                 }else{
                     return false;
                 }
@@ -56,14 +56,14 @@
 
     <body>
         <div id="includeHeader"></div>
-        <div id="despesas-view-listar">
+        <div id="receitas-view-listar">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
                         <div id="includeMenuLateral"></div>
                     </div>
                     <div class="col-md-9">
-                        <div class="titulo">Minhas Despesas</div>
+                        <div class="titulo">Minhas Receitas</div>
                         <!-- 
                             INFORMAÇÕES
                          -->
@@ -73,21 +73,21 @@
                                     <div class="informacao">
                                         <img src="../../../images/nao-pago-g.png">
                                         <div class="item">Total pendente</div>
-                                        <div class="valor"><?php echo $totalDespesasNaoPagas ?></div>    
+                                        <div class="valor"><?php echo $totalPendente ?></div>    
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="informacao">
                                         <img src="../../../images/pago-g.png">
-                                        <div class="item">Total pago</div>
-                                        <div class="valor"><?php echo $totalDespesasPagas ?></div>    
+                                        <div class="item">Total recebido</div>
+                                        <div class="valor"><?php echo $totalRecebido ?></div>    
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="informacao">
                                         <img src="../../../images/total-despesas.png">
-                                        <div class="item">Total de despesas</div>
-                                        <div class="valor"><?php echo $totalDespesas ?></div>    
+                                        <div class="item">Total de receitas</div>
+                                        <div class="valor"><?php echo $totalReceitas ?></div>    
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Pago</th>
+                                            <th>Recebido</th>
                                             <th>Descrição</th>
                                             <th>Conta</th>
                                             <th>Categoria</th>
@@ -148,24 +148,24 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            if(isset($_SESSION['despesas'])){
-                                                foreach ($despesas as $despesa) {
+                                            if(isset($_SESSION['receitas'])){
+                                                foreach ($receitas as $receita) {
                                                     echo '<tr>';
-                                                        echo '<td>'.$despesa->pago.'</td>';
-                                                        echo '<td>'.$despesa->descricao.'</td>';
-                                                        echo '<td>'.$despesa->conta.'</td>';
-                                                        echo '<td>'.$despesa->categoria.'</td>';
-                                                        echo '<td>'.$despesa->valor.'</td>';
-                                                        echo '<td>'.$despesa->data.'</td>';
+                                                        echo '<td>'.$receita->recebido.'</td>';
+                                                        echo '<td>'.$receita->descricao.'</td>';
+                                                        echo '<td>'.$receita->conta.'</td>';
+                                                        echo '<td>'.$receita->categoria.'</td>';
+                                                        echo '<td>'.$receita->valor.'</td>';
+                                                        echo '<td>'.$receita->data.'</td>';
                                                         echo '<td>
-                                                                <a href="DespesasViewCadastrar.php?despesaId='.$despesa->id.'">
+                                                                <a href="ReceitasViewCadastrar.php?receitaId='.$receita->id.'">
                                                                     <button class="btn btn-primary">
                                                                         <img src="../../../images/editar.png">
                                                                     </button>
                                                                 </a>
                                                               </td>';
                                                         echo '<td>
-                                                                <a onclick="excluir('.$despesa->id.')">
+                                                                <a onclick="excluir('.$receita->id.')">
                                                                     <button class="btn btn-danger pull-right">
                                                                         <img src="../../../images/deletar.png">
                                                                     </button>
@@ -187,8 +187,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="botoes">
-                                    <a href="DespesasViewCadastrar.php">
-                                        <button class="btn btn-success">+ Adicionar nova despesa</button>
+                                    <a href="ReceitasViewCadastrar.php">
+                                        <button class="btn btn-success">+ Adicionar nova receita</button>
                                     </a>
                                 </div>
                             </div>

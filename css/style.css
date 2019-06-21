@@ -59,7 +59,7 @@
   background-color: #556594;
   box-shadow: 0px 2px 5px black; }
   .view-header .logo {
-    text-align: center; }
+    margin-left: 100px; }
     .view-header .logo img {
       height: 45px;
       margin-top: 10px;
@@ -240,6 +240,15 @@
           #contas-view-listar .painel .informacoes .campo-adicionar a img {
             margin: 20% auto; }
 
+#contas-view-cadastrar {
+  font-family: 'Montserrat-Light';
+  text-align: center; }
+  #contas-view-cadastrar .titulo {
+    font-family: 'LongTime';
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold; }
+
 #despesas-view-listar {
   font-family: 'Montserrat-Light'; }
   #despesas-view-listar .titulo {
@@ -260,9 +269,67 @@
       #despesas-view-listar .informacoes .informacao img {
         width: 40px; }
   #despesas-view-listar .filtros {
-    margin-top: 50px; }
+    margin-top: 80px; }
   #despesas-view-listar .table {
+    margin-top: 10px; }
+  #despesas-view-listar .botoes {
+    text-align: right; }
+
+#despesas-view-cadastrar {
+  font-family: 'Montserrat-Light';
+  text-align: center; }
+  #despesas-view-cadastrar .titulo {
+    font-family: 'LongTime';
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold; }
+  #despesas-view-cadastrar input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em; }
+  #despesas-view-cadastrar input[type="date"]:focus:before, #despesas-view-cadastrar input[type="date"]:valid:before {
+    content: ""; }
+
+#receitas-view-listar {
+  font-family: 'Montserrat-Light'; }
+  #receitas-view-listar .titulo {
+    text-align: center;
+    font-family: 'LongTime';
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold; }
+  #receitas-view-listar .informacoes {
     margin-top: 50px; }
+    #receitas-view-listar .informacoes .informacao {
+      padding: 10px 0;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 1px 1px 4px #ddd; }
+      #receitas-view-listar .informacoes .informacao .item {
+        font-weight: bold; }
+      #receitas-view-listar .informacoes .informacao img {
+        width: 40px; }
+  #receitas-view-listar .filtros {
+    margin-top: 80px; }
+  #receitas-view-listar .table {
+    margin-top: 10px; }
+  #receitas-view-listar .botoes {
+    text-align: right; }
+
+#receitas-view-cadastrar {
+  font-family: 'Montserrat-Light';
+  text-align: center; }
+  #receitas-view-cadastrar .titulo {
+    font-family: 'LongTime';
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold; }
+  #receitas-view-cadastrar input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em; }
+  #receitas-view-cadastrar input[type="date"]:focus:before, #receitas-view-cadastrar input[type="date"]:valid:before {
+    content: ""; }
 
 .view-footer {
   margin: 50px 0; }

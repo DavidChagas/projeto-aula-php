@@ -2,6 +2,7 @@
 
 session_start();
 
+include '../Persistence/Conexao.php';
 include '../Model/DespesasModel.php';
 include '../DAO/DespesasDAO.php';
 
@@ -13,26 +14,31 @@ if(isset($_GET['operacao'])){
 		// CADASTRAR
 		// 
 		case 'cadastrar':
-			if( (!empty($_POST['tipo'])) && (!empty($_POST['saldo'])) && (!empty($_POST['limite_despesas']))){
-				$conta = new ContasModel();
+			if( (!empty($_POST['descricao'])) && (!empty($_POST['valor'])) && (!empty($_POST['data'])) && 
+				(!empty($_POST['conta_id'])) && (!empty($_POST['categoria_despesa_id'])) && 
+				(!empty($_POST['pago'])) ){
 
-                $conta->usuario_id = $_SESSION['usuario_id'];
-                $conta->tipo = $_POST['tipo'];
-                $conta->saldo = $_POST['saldo'];
-                $conta->limite_despesas = $_POST['limite_despesas'];
+				$despesa = new DespesasModel();
 
-                $contasDao = new ContasDAO();
+                $despesa->conta_id = $_POST['conta_id'];
+                $despesa->categoria_despesa_id = $_POST['categoria_despesa_id'];
+                $despesa->descricao = $_POST['descricao'];
+                $despesa->valor = $_POST['valor'];
+                $despesa->data = $_POST['data'];
+                $despesa->pago = $_POST['pago'];
 
-                if($contasDao->inserirConta($conta)){
-                	$contasDao = new ContasDAO();
+                $despesasDao = new DespesasDAO();
 
-					$contas = array();
+                if($despesasDao->inserirDespesa($despesa)){
+                	$despesasDao = new DespesasDAO();
+
+					$despesas = array();
 					$usuario_id = $_SESSION['usuario_id'];
-					$contas = $contasDao->buscarContas($usuario_id);
-					$_SESSION['contas'] = serialize($contas);
-					header("location:../View/Contas/ContasViewListar.php");
+					$despesas = $despesasDao->buscarDespesasUsuario($usuario_id);
+					$_SESSION['despesas'] = serialize($despesas);
+					header("location:../View/Despesas/DespesasViewListar.php");
                 }else{
-                	echo 'Erro ao inserir conta';
+                	echo 'Erro ao inserir despesa';
                 }
 	        }else{
 				echo 'Informe todos os campos!';
@@ -40,7 +46,7 @@ if(isset($_GET['operacao'])){
 		break;
 		
 		// 
-		// CONSULTAR
+		// LISTAR
 		// 
 		case 'listar':
 			$despesasDao = new DespesasDAO();
@@ -52,6 +58,47 @@ if(isset($_GET['operacao'])){
 			header("location:../View/Despesas/DespesasViewListar.php");
 		break;
 
+		//
+		// EDITAR
+		//
+		case 'editar':
+			if( (!empty($_POST['descricao'])) && (!empty($_POST['valor'])) && (!empty($_POST['data'])) && 
+				(!empty($_POST['conta_id'])) && (!empty($_POST['categoria_despesa_id'])) && 
+				(!empty($_POST['pago'])) ){
+
+				$despesa = new DespesasModel();
+
+				$despesa->id = $_GET['despesa_id'];
+                $despesa->conta_id = $_POST['conta_id'];
+                $despesa->categoria_despesa_id = $_POST['categoria_despesa_id'];
+                $despesa->descricao = $_POST['descricao'];
+                $despesa->valor = $_POST['valor'];
+                $despesa->data = $_POST['data'];
+                $despesa->pago = $_POST['pago'];
+                
+
+                $despesasDao = new DespesasDAO();
+
+                if($despesasDao->EditarDespesa($despesa)){
+                	// Busca no banco as informacoes atualizadas para ir para a pág listar
+                	$despesasDao = new DespesasDAO();
+
+					$despesas = array();
+					$usuario_id = $_SESSION['usuario_id'];
+					$despesas = $despesasDao->buscarDespesasUsuario($usuario_id);
+					$_SESSION['despesas'] = serialize($despesas);
+					header("location:../View/Despesas/DespesasViewListar.php");
+                }else{
+                	echo 'Erro ao editar';
+                }
+	        }else{
+				echo 'Informe todos os campos!';
+			}
+		break;
+
+		//
+		// EXCLUIR
+		//
 		case 'excluir':
 			$despesasDao = new DespesasDAO();
 			$despesa_id = $_GET['id'];

@@ -1,7 +1,5 @@
 <?php
 
-	include '../Persistence/Conexao.php';
-
 	class DespesasDAO {
 	    private $conexao = null;
 
@@ -30,9 +28,31 @@
 		    }
 		}
 
-		public function buscaDespesa($despesa_id){
+		public function EditarDespesa($despesa){
 			try{
-				$status = $this->conexao->prepare("SELECT * FROM despesas WHERE id = ?");
+		        $status = $this->conexao->prepare("UPDATE despesa SET conta_id = ?, categoria_despesa_id = ?, descricao = ?, valor = ?, data = ?, pago = ? WHERE id = ?;");
+
+		        $status->bindValue(1, $despesa->conta_id);
+		        $status->bindValue(2, $despesa->categoria_despesa_id);
+		        $status->bindValue(3, $despesa->descricao);
+		        $status->bindValue(4, $despesa->valor);
+		        $status->bindValue(5, $despesa->data);
+		        $status->bindValue(6, $despesa->pago);
+		        $status->bindValue(7, $despesa->id);
+		        
+		        $status->execute();
+		       
+		        //Encerra a conexão com o banco
+		        $this->conexao = null;
+		        return true;
+		    } catch (PDOException $e) {
+		    	return false;
+		    }
+		}
+
+		public function buscarDespesa($despesa_id){
+			try{
+				$status = $this->conexao->prepare("SELECT * FROM despesa WHERE id = ?");
 				$status->bindValue(1, $despesa_id);
 				$status->execute();
 
@@ -49,7 +69,7 @@
 		// Busca todas as despesas referente ao usuario
 		public function buscarDespesasUsuario($usuario_id){
 			try{
-	            $status = $this->conexao->prepare("SELECT d.*, cd.nome FROM despesa d INNER JOIN conta c ON d.conta_id = c.id INNER JOIN categoria_despesa cd ON cd.id = d.categoria_despesa_id WHERE c.usuario_id =  ?");
+	            $status = $this->conexao->prepare("SELECT d.*, cd.nome as categoria, c.tipo as conta FROM despesa d INNER JOIN conta c ON d.conta_id = c.id INNER JOIN categoria_despesa cd ON cd.id = d.categoria_despesa_id WHERE c.usuario_id = ?");
 	            $status->bindValue(1, $usuario_id);
 				$status->execute();
 
@@ -57,7 +77,7 @@
 	            $array = $status->fetchAll(PDO::FETCH_CLASS, 'DespesasModel');
 
 	            $this->connection = null;
-
+	            // echo $array[0]->conta_id;
 	            return $array;
 	        } catch (PDOException $e){
 	            echo 'Ocorreram erros ao buscar as despesas' . $e;
@@ -95,7 +115,7 @@
 				}
 	        
 	        } catch (PDOException $e){
-	            echo 'Ocorreram erros ao excluir o despesa' . $e;
+	            echo 'Ocorreram erros ao excluir a despesa' . $e;
 	        }
 	    }
 	}

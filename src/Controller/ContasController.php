@@ -41,7 +41,7 @@ if(isset($_GET['operacao'])){
 		break;
 		
 		// 
-		// CONSULTAR
+		// LISTAR
 		// 
 		case 'listar':
 			$contasDao = new ContasDAO();

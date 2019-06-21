@@ -17,7 +17,7 @@
             <div>Despesas</div>
         </div>
     </a>
-    <a href="">
+    <a href="../../Controller/ReceitasController.php?operacao=listar">
         <div class="item-menu">
             <img src="../../../images/receitas.png">
             <div>Receitas</div>
