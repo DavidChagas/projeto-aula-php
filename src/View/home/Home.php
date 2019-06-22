@@ -43,6 +43,9 @@
                                 
                                 echo $_SESSION['usuario_nome']
                             ?>
+                            <a href="../../Controller/CategoriasController.php?operacao=listar&tipo=Despesa">
+                                <button class="btn btn-primary">Listar categorias Despesas</button>
+                            </a>
                         </div>
                     </div>
                 </div>

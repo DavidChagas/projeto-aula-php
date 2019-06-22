@@ -3,17 +3,17 @@
     session_start();
     include "../../Persistence/Conexao.php";
     include "../../DAO/ContasDAO.php";
-    include "../../DAO/CategoriaReceitaDAO.php";
+    include "../../DAO/CategoriasDAO.php";
 
     $usuario_id = $_SESSION['usuario_id'];
 
     $contasDao = new ContasDAO();
-    $categoriaDAO = new CategoriaReceitaDAO();
+    $categoriasDAO = new CategoriasDAO();
 
     $contas = array();
     $categorias = array();
     $contas = $contasDao->buscarContas($usuario_id);
-    $categorias = $categoriaDAO->buscarCategorias($usuario_id);
+    $categorias = $categoriasDAO->buscarCategorias($usuario_id, 'Receita');
 
     if(isset($_GET['receitaId'])){
         $receita_id = $_GET['receitaId'];
@@ -89,8 +89,8 @@
                             <div class="form-group">
                                 <input class="form-control" type="date" name="data" value="<?php echo $data ?>" placeholder="Data: ">
                             </div>
-                            <div class="form-group">
-                                <select class="form-control" name="conta_id">
+                            <div class="form-group" style="display: flex;">
+                                <select class="form-control" name="conta_id" style="width: 80%">
                                     <option selected value="<?php echo $conta_id ?>">Selecione uma conta</option>
                                     <?php
                                         foreach ($contas as $conta) {
@@ -98,9 +98,12 @@
                                         }
                                     ?>
                                 </select>
+                                <a href="../Contas/ContasViewCadastrar.php" style="width: 20%; margin-left: 10px;">
+                                    <button class="btn btn-success" type="button" style="width: 100%;">+ Nova Conta</button>
+                                </a>
                             </div>
-                            <div class="form-group">
-                                <select class="form-control" name="categoria_receita_id">
+                            <div class="form-group" style="display: flex;">
+                                <select class="form-control" name="categoria_receita_id" style="width: 80%">
                                     <option value="<?php echo $categoria_receita_id ?>">Selecione uma categoria</option>
                                     <?php
                                         foreach ($categorias as $categoria) {
@@ -108,6 +111,9 @@
                                         }
                                     ?>
                                 </select>
+                                <a href="../../View/Categorias/CategoriasViewCadastrar.php?tipo=Receita" style="width: 20%; margin-left: 10px;">
+                                    <button class="btn btn-success" type="button" style="width: 100%;">+ Nova Categoria</button>
+                                </a>
                             </div>
                             <div class="form-group">
                                 <select class="form-control" name="recebido">

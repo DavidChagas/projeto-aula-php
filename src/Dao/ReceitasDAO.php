@@ -69,7 +69,7 @@
 		// Busca todas as receitas referente ao usuario
 		public function buscarReceitasUsuario($usuario_id){
 			try{
-	            $status = $this->conexao->prepare("SELECT r.*, cd.nome as categoria, c.tipo as conta FROM receita r INNER JOIN conta c ON r.conta_id = c.id INNER JOIN categoria_receita cd ON cd.id = r.categoria_receita_id WHERE c.usuario_id = ?");
+	            $status = $this->conexao->prepare("SELECT r.*, cd.nome as categoria, c.tipo as conta FROM receita r INNER JOIN conta c ON r.conta_id = c.id INNER JOIN categoria cd ON cd.id = r.categoria_receita_id WHERE c.usuario_id = ?");
 	            $status->bindValue(1, $usuario_id);
 				$status->execute();
 

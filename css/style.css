@@ -331,6 +331,28 @@
   #receitas-view-cadastrar input[type="date"]:focus:before, #receitas-view-cadastrar input[type="date"]:valid:before {
     content: ""; }
 
+#categorias-view-listar {
+  font-family: 'Montserrat-Light'; }
+  #categorias-view-listar .titulo {
+    text-align: center;
+    font-family: 'LongTime';
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold; }
+  #categorias-view-listar .table {
+    margin-top: 10px; }
+  #categorias-view-listar .botoes {
+    text-align: right; }
+
+#categorias-view-cadastrar {
+  font-family: 'Montserrat-Light';
+  text-align: center; }
+  #categorias-view-cadastrar .titulo {
+    font-family: 'LongTime';
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold; }
+
 .view-footer {
   margin: 50px 0; }
   .view-footer .descricao {

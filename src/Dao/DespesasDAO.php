@@ -69,7 +69,7 @@
 		// Busca todas as despesas referente ao usuario
 		public function buscarDespesasUsuario($usuario_id){
 			try{
-	            $status = $this->conexao->prepare("SELECT d.*, cd.nome as categoria, c.tipo as conta FROM despesa d INNER JOIN conta c ON d.conta_id = c.id INNER JOIN categoria_despesa cd ON cd.id = d.categoria_despesa_id WHERE c.usuario_id = ?");
+	            $status = $this->conexao->prepare("SELECT d.*, cd.nome as categoria, c.tipo as conta FROM despesa d INNER JOIN conta c ON d.conta_id = c.id INNER JOIN categoria cd ON cd.id = d.categoria_despesa_id WHERE c.usuario_id = ?");
 	            $status->bindValue(1, $usuario_id);
 				$status->execute();
 

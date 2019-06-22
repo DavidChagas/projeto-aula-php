@@ -1,7 +1,9 @@
 <?php 
 
-class CategoriaDespesaModel {
+class CategoriasModel {
 	private $id;
+	private $usuario_id;
+	private $tipo;
 	private $nome;
 	
 	public function __construct(){}
