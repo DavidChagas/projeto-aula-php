@@ -1,6 +1,8 @@
 <?php
 
 session_start();
+
+include '../Include/ContasValidate.php';
 include '../Persistence/Conexao.php';
 include '../Model/ContasModel.php';
 include '../DAO/ContasDAO.php';
@@ -13,30 +15,46 @@ if(isset($_GET['operacao'])){
 		// CADASTRAR
 		// 
 		case 'cadastrar':
-			if( (!empty($_POST['tipo'])) && (!empty($_POST['saldo'])) && (!empty($_POST['limite_despesas']))){
-				$conta = new ContasModel();
+			$erros = array();
 
-                $conta->usuario_id = $_SESSION['usuario_id'];
-                $conta->tipo = $_POST['tipo'];
-                $conta->saldo = $_POST['saldo'];
-                $conta->limite_despesas = $_POST['limite_despesas'];
+			if( (!empty($_POST['tipo'])) && (!empty($_POST['saldo'])) ){
 
-                $contasDao = new ContasDAO();
+				if(!ContasValidate::validaSaldoPositivo($_POST['saldo'])){
+					$erros[] = 'O valor não pode ser negativo!';
+				}
+				
 
-                if($contasDao->inserirConta($conta)){
-                	// Busca no banco as informacoes atualizadas para ir para a pág listar
-                	$contasDao = new ContasDAO();
+				if(count($erros) == 0){
+					$conta = new ContasModel();
 
-					$contas = array();
-					$usuario_id = $_SESSION['usuario_id'];
-					$contas = $contasDao->buscarContas($usuario_id);
-					$_SESSION['contas'] = serialize($contas);
-					header("location:../View/Contas/ContasViewListar.php");
+	                $conta->usuario_id = $_SESSION['usuario_id'];
+	                $conta->tipo = $_POST['tipo'];
+	                $conta->saldo = $_POST['saldo'];
+	                
+	                $contasDao = new ContasDAO();
+
+	                if($contasDao->inserirConta($conta)){
+	                	// Busca no banco as informacoes atualizadas para ir para a pág listar
+	                	$contasDao = new ContasDAO();
+
+						$contas = array();
+						$usuario_id = $_SESSION['usuario_id'];
+						$contas = $contasDao->buscarContas($usuario_id);
+						$_SESSION['contas'] = serialize($contas);
+						header("location:../View/Contas/ContasViewListar.php");
+	                }else{
+	                	echo 'Erro ao inserir conta';
+	                }
                 }else{
-                	echo 'Erro ao inserir conta';
-                }
+					$err = serialize($erros);
+					$_SESSION['erros'] = $err;
+					header("location:../View/Contas/ContasViewError.php?"."erros=$err");
+				}
 	        }else{
-				echo 'Informe todos os campos!';
+				$erros[] = 'Informe todos os campos!';
+				$err = serialize($erros);
+				$_SESSION['erros'] = $err;
+				header("location:../View/Contas/ContasViewError.php?"."erros=$err");
 			}
 		break;
 		
@@ -58,14 +76,13 @@ if(isset($_GET['operacao'])){
 		//
 		case 'editar':
 		
-			if( (!empty($_POST['tipo'])) && (!empty($_POST['saldo'])) && (!empty($_POST['limite_despesas']))){
+			if( (!empty($_POST['tipo'])) && (!empty($_POST['saldo'])) ){
 				$conta = new ContasModel();
 
 				$conta->id =  $_GET['conta_id'];
                 $conta->tipo = $_POST['tipo'];
                 $conta->saldo = $_POST['saldo'];
-                $conta->limite_despesas = $_POST['limite_despesas'];
-
+               
                 $contasDao = new ContasDAO();
 
                 if($contasDao->EditarConta($conta)){

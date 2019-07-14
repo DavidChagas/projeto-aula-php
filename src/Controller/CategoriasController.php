@@ -28,14 +28,18 @@ if(isset($_GET['operacao'])){
 
 					$categorias = array();
 					$usuario_id = $_SESSION['usuario_id'];
-					$categorias = $categoriasDao->buscarCategorias($usuario_id, $_GET['tipo']);
+					$tipo = $_GET['tipo'];
+					$categorias = $categoriasDao->buscarCategorias($usuario_id, $tipo);
 					$_SESSION['categorias'] = serialize($categorias);
-					header("location:../View/Categorias/CategoriasViewListar.php");
+					header("location:../View/Categorias/CategoriasViewListar.php?tipo=".$_GET['tipo']);
                 }else{
                 	echo 'Erro ao inserir categoria';
                 }
 	        }else{
-				echo 'Informe o nome da categoria!';
+				$erros[] = 'Informe o nome da categoria!';
+				$err = serialize($erros);
+				$_SESSION['erros'] = $err;
+				header("location:../View/Categorias/CategoriasViewError.php?"."erros=$err&"."tipo=".$_GET['tipo']);
 			}
 		break;
 		
@@ -76,12 +80,15 @@ if(isset($_GET['operacao'])){
 					$usuario_id = $_SESSION['usuario_id'];
 					$categorias = $categoriasDao->buscarCategorias($usuario_id, $_POST['tipo']);
 					$_SESSION['categorias'] = serialize($categorias);
-					header("location:../View/Categorias/CategoriasViewListar.php");
+					header("location:../View/Categorias/CategoriasViewListar.php?tipo=".$_POST['tipo']);
                 }else{
-                	echo 'Erro ao inserir conta';
+                	echo 'Erro ao inserir categoria';
                 }
 	        }else{
-				echo 'Informe todos os campos!';
+				$erros[] = 'Informe o nome da categoria!';
+				$err = serialize($erros);
+				$_SESSION['erros'] = $err;
+				header("location:../View/Categorias/CategoriasViewError.php?"."erros=$err&"."tipo=".$_POST['tipo']);
 			}
 		break;
 
@@ -100,8 +107,8 @@ if(isset($_GET['operacao'])){
 				$categorias = array();
 				$categorias = $categoriasDao->buscarCategorias($usuario_id, $tipo);
 				$_SESSION['categorias'] = serialize($categorias);
-				
-				header("location:../View/Categorias/CategoriasViewListar.php");
+				$tipo = $_GET['tipo'];
+				header("location:../View/Categorias/CategoriasViewListar.php?tipo=".$tipo);
 			}else{
 				echo 'Erro ao excluir';
 			}

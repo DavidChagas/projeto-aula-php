@@ -23,6 +23,14 @@
                 $("#includeFooter").load("../footer/footer.html");
                 $("#includeMenuLateral").load("../MenuLateral/MenuLateral.php");
             });
+
+            function excluir(){
+                if(confirm("Deseja realmente apagar a sua conta?")){
+                    window.location.href="../../Controller/UsuarioController.php?operacao=excluir";
+                }else{
+                    return false;
+                }
+            }
         </script> 
    </head>
 
@@ -51,8 +59,12 @@
 
                                     echo '<div class="informacao">' . 'Saldo Total: R$' . $usuario['saldo_total'] . '</div>';
                                 ?>
-                                <button class="btn btn-outline-primary">Atualizar dados</button>
-                                <button class="btn btn-outline-danger">Remover minha conta</button>
+                                <a href="UsuarioViewCadastrar.php?usuarioId=<?php echo $usuario['id']?>">
+                                    <button class="btn btn-primary">Atualizar dados</button>
+                                </a>
+                                <a onclick="excluir()">
+                                    <button class="btn btn-outline-danger">Remover minha conta</button>
+                                </a>
                             </div>
                         </div>
                     </div>

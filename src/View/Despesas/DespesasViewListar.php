@@ -73,21 +73,21 @@
                                     <div class="informacao">
                                         <img src="../../../images/nao-pago-g.png">
                                         <div class="item">Total pendente</div>
-                                        <div class="valor"><?php echo $totalDespesasNaoPagas ?></div>    
+                                        <div class="valor">R$ <?php echo $totalDespesasNaoPagas ?></div>    
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="informacao">
                                         <img src="../../../images/pago-g.png">
                                         <div class="item">Total pago</div>
-                                        <div class="valor"><?php echo $totalDespesasPagas ?></div>    
+                                        <div class="valor">R$ <?php echo $totalDespesasPagas ?></div>    
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="informacao">
                                         <img src="../../../images/total-despesas.png">
                                         <div class="item">Total de despesas</div>
-                                        <div class="valor"><?php echo $totalDespesas ?></div>    
+                                        <div class="valor">R$ <?php echo $totalDespesas ?></div>    
                                     </div>
                                 </div>
                             </div>
@@ -96,36 +96,84 @@
                             FILTROS
                          -->
                         <div class="filtros">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <select id="mes" class="form-control" name="filtroMes" value="">
-                                            <option selected>Filtre por mês</option>
-                                            <option value="01">Janeiro</option>
-                                            <option value="02">Fevereiro</option>
-                                            <option value="03">Março</option>
-                                            <option value="04">Abril</option>
-                                            <option value="05">Maio</option>
-                                            <option value="06">Junho</option>
-                                            <option value="07">Julho</option>
-                                            <option value="08">Agosto</option>
-                                            <option value="09">Setembro</option>
-                                            <option value="10">Outubro</option>
-                                            <option value="11">Novembro</option>
-                                            <option value="12">Dezembro</option>
-                                          </select>
+                            <form action="../../Controller/DespesasController.php?operacao=filtrar" method="post" name="formFiltro">
+                                
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <select id="mes" class="form-control" name="filtroMes" value="">
+                                                <option selected>Filtre por mês</option>
+                                                <option value="01">Janeiro</option>
+                                                <option value="02">Fevereiro</option>
+                                                <option value="03">Março</option>
+                                                <option value="04">Abril</option>
+                                                <option value="05">Maio</option>
+                                                <option value="06">Junho</option>
+                                                <option value="07">Julho</option>
+                                                <option value="08">Agosto</option>
+                                                <option value="09">Setembro</option>
+                                                <option value="10">Outubro</option>
+                                                <option value="11">Novembro</option>
+                                                <option value="12">Dezembro</option>
+                                              </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="filtroAno" placeholder="Filtre por ano">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-primary" type="submit" style="width: 100%">Filtrar</button>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" name="ano" placeholder="Filtre por ano">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <a onclick="<?php $funcao; ?>">
-                                        <button class="btn btn-primary" style="width: 100%">Filtrar</button>
-                                    </a>
-                                </div>
+                            </form>
+                            <div class="btn-limpar-filtro">
+                                <a href="../../Controller/DespesasController.php?operacao=listar">Limpar filtro</a>
+                            </div>
+                            <div class="filtradoPor">
+                                <?php 
+                                    if( isset($_SESSION['filtro_ano_despesas']) && isset($_SESSION['filtro_mes_despesas']) ){
+                                        switch ($_SESSION['filtro_mes_despesas']) {
+                                            case '01':
+                                                echo 'Janeiro de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '02':
+                                                echo 'Fevereiro de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '03':
+                                                echo 'Março de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '04':
+                                                echo 'Abril de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '05':
+                                                echo 'Maio de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '06':
+                                                echo 'Junho de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '07':
+                                                echo 'Julho de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '08':
+                                                echo 'Agosto de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '09':
+                                                echo 'Setembro de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '10':
+                                                echo 'Outubro de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '11':
+                                                echo 'Novembro de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                            case '12':
+                                                echo 'Dezembro de '.$_SESSION['filtro_ano_despesas'];
+                                                break;
+                                         }
+                                    }
+                                ?>
                             </div>
                         </div>
                         <!-- 
@@ -151,12 +199,18 @@
                                             if(isset($_SESSION['despesas'])){
                                                 foreach ($despesas as $despesa) {
                                                     echo '<tr>';
-                                                        echo '<td>'.$despesa->pago.'</td>';
+                                                        echo '<td>';
+                                                            if($despesa->pago == 'Sim'){
+                                                                echo '<img src="../../../images/pago-p.png" style="width:18px">';
+                                                            } else {
+                                                                echo '<img src="../../../images/nao-pago-p.png" style="width:15px">';
+                                                            }
+                                                        echo '</td>';
                                                         echo '<td>'.$despesa->descricao.'</td>';
                                                         echo '<td>'.$despesa->conta.'</td>';
                                                         echo '<td>'.$despesa->categoria.'</td>';
-                                                        echo '<td>'.$despesa->valor.'</td>';
-                                                        echo '<td>'.$despesa->data.'</td>';
+                                                        echo '<td> R$ '.$despesa->valor.'</td>';
+                                                        echo '<td>'.$newDate = date("d-m-Y", strtotime($despesa->data)).'</td>';
                                                         echo '<td>
                                                                 <a href="DespesasViewCadastrar.php?despesaId='.$despesa->id.'">
                                                                     <button class="btn btn-primary">

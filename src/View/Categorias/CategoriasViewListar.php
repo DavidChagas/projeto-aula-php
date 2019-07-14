@@ -4,7 +4,7 @@
     include_once '../../Model/CategoriasModel.php';
     $categorias = array();
     $categorias = unserialize($_SESSION['categorias']);
-    $tipo = $_SESSION['tipo_categoria'];
+    $tipo = $_GET['tipo'];
 ?>
 <html lang="pt">
     <head>
@@ -33,7 +33,7 @@
 
             function excluir(categoria_id){
                 if(confirm("Deseja realmente excluir esta categoria?")){
-                    window.location.href="../../Controller/CategoriasController.php?operacao=excluir&id="+categoria_id;
+                    window.location.href="../../Controller/CategoriasController.php?operacao=excluir&id="+categoria_id+"&tipo=<?php echo $tipo?>";
                 }else{
                     return false;
                 }

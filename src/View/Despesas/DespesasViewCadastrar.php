@@ -78,7 +78,7 @@
                         <div id="includeMenuLateral"></div>
                     </div>
                     <div class="col-md-9">
-                        <div class="titulo">Adicionar nova Despesa</div>
+                        <div class="titulo"><?php if(isset($despesa_id)) echo 'Editar Despesa'; else echo 'Adicionar nova Despesa' ?></div>
                         <form action=" ../../Controller/DespesasController.php?operacao=<?php echo $acao; if(isset($despesa_id)) echo '&despesa_id='.$despesa_id ?>" method="post" name="formDespesa">
                             <div class="form-group">
                                 <input class="form-control" type="text" name="descricao" value="<?php echo $descricao ?>" placeholder="Descrição">

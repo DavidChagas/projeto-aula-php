@@ -70,7 +70,7 @@
                             <button class="btn btn-primary" type="submit">
                                 <?php if(isset($categoria_id)) echo 'Editar'; else echo 'Cadastrar' ?>
                             </button>
-                            <a href="../../View/Categorias/CategoriasViewListar.php">
+                            <a href="../../View/Categorias/CategoriasViewListar.php?tipo=<?php echo $tipo ?>">
                                 <button type="button" class="btn btn-danger">Cancelar</button>
                             </a>
                         </form>

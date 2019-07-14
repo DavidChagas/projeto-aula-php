@@ -56,8 +56,7 @@
                                     foreach ($contas as $conta) {
                                         echo '<div class="conta">';
                                             echo '<div class="informacao-principal">'.$conta->tipo.'</div>';
-                                            echo '<div class="informacao">Saldo total: R$ '.$conta->saldo.'</div>';
-                                            echo '<div class="informacao">Limite de despesas: R$ '.$conta->limite_despesas.'</div>';
+                                            echo '<div class="informacao">Saldo total <br> R$ '.$conta->saldo.'</div>';
                                             echo '<a href="ContasViewCadastrar.php?contaId='.$conta->id.'"><button class="btn btn-primary">Editar</button></a>';
                                             echo '<a onclick="excluir('.$conta->id.')"><button class="btn btn-danger">Excluir</button></a>';
                                         echo '</div>';

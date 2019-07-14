@@ -10,12 +10,11 @@
 
 		public function inserirConta($conta){
 			try{
-		        $status = $this->conexao->prepare("Insert Into conta(id, usuario_id, tipo, saldo, limite_despesas) values (null,?,?,?,?)");
+		        $status = $this->conexao->prepare("Insert Into conta(id, usuario_id, tipo, saldo) values (null,?,?,?)");
 
 		        $status->bindValue(1, $conta->usuario_id);
 		        $status->bindValue(2, $conta->tipo);
 		        $status->bindValue(3, $conta->saldo);
-		        $status->bindValue(4, $conta->limite_despesas);
 		        
 		        $status->execute();
 
@@ -29,12 +28,11 @@
 
 		public function EditarConta($conta){
 			try{
-		        $status = $this->conexao->prepare("UPDATE conta SET tipo = ?, saldo = ?, limite_despesas = ? WHERE id = ?;");
+		        $status = $this->conexao->prepare("UPDATE conta SET tipo = ?, saldo = ? WHERE id = ?;");
 
 		        $status->bindValue(1, $conta->tipo);
 		        $status->bindValue(2, $conta->saldo);
-		        $status->bindValue(3, $conta->limite_despesas);
-		        $status->bindValue(4, $conta->id);
+		        $status->bindValue(3, $conta->id);
 		        
 		        $status->execute();
 		       

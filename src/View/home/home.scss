@@ -1,4 +1,84 @@
 .view-home{
 	font-family: 'Montserrat-Regular';
+
+	.saudacao{
+		text-align: end;
+		color: #aaa;
+		font-weight: bold;
+	}
+
+	.titulo{
+		text-align: center;
+		font-family: 'LongTime';
+		margin-bottom: 20px;
+		font-size: 25px;
+		font-weight: bold;
+	}
+
+	.subtitulo{
+		margin-top: 50px;
+		margin-bottom: 5px;
+		font-size: 18px;
+		color: #777;
+	}
+
+	.informacao{
+		padding: 10px 0;
+		text-align: center;
+		border-radius: 5px;
+		box-shadow: 1px 1px 4px #aaa;
+		background-color: #f7f7f7;	
+
+		&.total{
+			background-color: #eee;	
+		}
+
+		.item{
+			margin-top: 10px;
+			font-weight: bold;
+			color: #555;
+		}
+		.valor{
+			font-weight: bold;
+			font-size: 20px;
+			color: #333;
+		}
+	}
+
+	.campo{
+		display: flex;
+
+		width: 100%;
+		padding: 20px 0;
+
+		border-radius: 5px;
+		box-shadow: 2px 2px 5px #aaa;
+
+		&:hover{
+			box-shadow: 2px 2px 5px #333;
+			cursor: pointer;
+		}
+		&.receita{
+			background-color: #cdefe0;
+		}
+		&.despesa{
+			background-color: #f7d4d2;
+		}
+		&.categorias{
+			background-color: #e1e6f1;
+		}
+
+		a{
+			width: 100%;
+			text-align: center;
+			color: #333;
+			font-weight: bold;
+			text-decoration: none;
+
+			img{
+				width: 20px;
+			}
+		}
+	}
 }
 

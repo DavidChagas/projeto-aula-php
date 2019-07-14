@@ -78,7 +78,7 @@
                         <div id="includeMenuLateral"></div>
                     </div>
                     <div class="col-md-9">
-                        <div class="titulo">Adicionar nova Receita</div>
+                        <div class="titulo"><?php if(isset($receita_id)) echo 'Editar Receita'; else echo 'Adicionar nova Receita' ?></div>
                         <form action=" ../../Controller/ReceitasController.php?operacao=<?php echo $acao; if(isset($receita_id)) echo '&receita_id='.$receita_id ?>" method="post" name="formReceita">
                             <div class="form-group">
                                 <input class="form-control" type="text" name="descricao" value="<?php echo $descricao ?>" placeholder="Descrição">

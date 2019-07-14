@@ -84,10 +84,10 @@
 
 .menu-lateral {
   width: 100%;
-  height: 100vh;
   text-align: center;
   font-family: 'Montserrat-Regular';
-  background-color: White; }
+  background-color: White;
+  border-right: 3px solid #eee; }
   .menu-lateral a .item-menu {
     text-decoration: none;
     color: black;
@@ -124,6 +124,60 @@
 
 .view-home {
   font-family: 'Montserrat-Regular'; }
+  .view-home .saudacao {
+    text-align: end;
+    color: #aaa;
+    font-weight: bold; }
+  .view-home .titulo {
+    text-align: center;
+    font-family: 'LongTime';
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: bold; }
+  .view-home .subtitulo {
+    margin-top: 50px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #777; }
+  .view-home .informacao {
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px #aaa;
+    background-color: #f7f7f7; }
+    .view-home .informacao.total {
+      background-color: #eee; }
+    .view-home .informacao .item {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #555; }
+    .view-home .informacao .valor {
+      font-weight: bold;
+      font-size: 20px;
+      color: #333; }
+  .view-home .campo {
+    display: flex;
+    width: 100%;
+    padding: 20px 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #aaa; }
+    .view-home .campo:hover {
+      box-shadow: 2px 2px 5px #333;
+      cursor: pointer; }
+    .view-home .campo.receita {
+      background-color: #cdefe0; }
+    .view-home .campo.despesa {
+      background-color: #f7d4d2; }
+    .view-home .campo.categorias {
+      background-color: #e1e6f1; }
+    .view-home .campo a {
+      width: 100%;
+      text-align: center;
+      color: #333;
+      font-weight: bold;
+      text-decoration: none; }
+      .view-home .campo a img {
+        width: 20px; }
 
 #usuario-view-error {
   margin-top: 100px;
@@ -202,26 +256,23 @@
       font-size: 25px;
       font-weight: bold; }
     #contas-view-listar .painel .informacoes {
-      margin-bottom: 30px;
-      padding: 30px 0;
-      border-radius: 5px;
-      text-align: center;
-      background-color: #f9f9f9;
-      box-shadow: 1px 1px 2px #aaa;
       display: grid;
       grid-template-columns: repeat(3, 1fr); }
       #contas-view-listar .painel .informacoes .conta {
         margin: 10px;
         padding-bottom: 10px;
         border-radius: 5px;
-        background-color: #ced5e6; }
+        background-color: #ced5e6;
+        box-shadow: 2px 2px 3px #999; }
         #contas-view-listar .painel .informacoes .conta .informacao-principal {
-          padding: 3px 0;
+          padding: 10px 0;
           color: white;
           font-size: 20px;
           font-weight: bold;
+          text-transform: uppercase;
           border-radius: 5px;
-          background-color: #909cbd; }
+          background-color: #7985a7;
+          box-shadow: 1px 2px 4px #666; }
         #contas-view-listar .painel .informacoes .conta .informacao {
           font-weight: bold;
           margin: 10px; }
@@ -231,10 +282,11 @@
         margin: 10px;
         border-radius: 5px;
         background-color: #ced5e6;
-        display: flex; }
+        display: flex;
+        box-shadow: 2px 2px 5px #aaa; }
         #contas-view-listar .painel .informacoes .campo-adicionar:hover {
           cursor: pointer;
-          box-shadow: 1px 1px 3px #aaa; }
+          box-shadow: 2px 2px 5px #333; }
         #contas-view-listar .painel .informacoes .campo-adicionar a {
           width: 100%; }
           #contas-view-listar .painel .informacoes .campo-adicionar a img {
@@ -263,13 +315,24 @@
       padding: 10px 0;
       text-align: center;
       border-radius: 5px;
-      box-shadow: 1px 1px 4px #ddd; }
+      box-shadow: 1px 1px 4px #aaa;
+      background-color: #f7f7f7; }
       #despesas-view-listar .informacoes .informacao .item {
         font-weight: bold; }
       #despesas-view-listar .informacoes .informacao img {
         width: 40px; }
   #despesas-view-listar .filtros {
     margin-top: 80px; }
+    #despesas-view-listar .filtros .btn-limpar-filtro {
+      text-align: end; }
+      #despesas-view-listar .filtros .btn-limpar-filtro a {
+        color: #333; }
+    #despesas-view-listar .filtros .filtradoPor {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 25px;
+      color: #777; }
   #despesas-view-listar .table {
     margin-top: 10px; }
   #despesas-view-listar .botoes {
@@ -304,13 +367,24 @@
       padding: 10px 0;
       text-align: center;
       border-radius: 5px;
-      box-shadow: 1px 1px 4px #ddd; }
+      box-shadow: 1px 1px 4px #aaa;
+      background-color: #f7f7f7; }
       #receitas-view-listar .informacoes .informacao .item {
         font-weight: bold; }
       #receitas-view-listar .informacoes .informacao img {
         width: 40px; }
   #receitas-view-listar .filtros {
     margin-top: 80px; }
+    #receitas-view-listar .filtros .btn-limpar-filtro {
+      text-align: end; }
+      #receitas-view-listar .filtros .btn-limpar-filtro a {
+        color: #333; }
+    #receitas-view-listar .filtros .filtradoPor {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 25px;
+      color: #777; }
   #receitas-view-listar .table {
     margin-top: 10px; }
   #receitas-view-listar .botoes {

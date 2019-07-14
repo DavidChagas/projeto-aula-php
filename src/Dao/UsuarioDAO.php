@@ -1,6 +1,6 @@
 <?php
 
-	include '../Persistence/Conexao.php';
+	// include '../Persistence/Conexao.php';
 
 	// $conexao = getConexao();
 
@@ -29,6 +29,7 @@
 		}
 
 		public function inserirUsuario($usuario){
+			
 			try{
 		        $status = $this->conexao->prepare("Insert Into usuario(id, nome, cpf, email, senha, saldo_total) values (null,?,?,?,?,?)");
 
@@ -66,5 +67,59 @@
 	            echo 'Ocorreram erros ao buscar o usuário' . $e;
 	        }
 		}
+
+		public function EditarUsuario($usuario){
+			try{
+		        $status = $this->conexao->prepare("UPDATE usuario SET nome = ?, cpf = ?, email = ?, senha = ? WHERE id = ?;");
+
+		        $status->bindValue(1, $usuario->nome);
+		        $status->bindValue(2, $usuario->cpf);
+		        $status->bindValue(3, $usuario->email);
+		        $status->bindValue(4, $usuario->senha);
+		        $status->bindValue(5, $usuario->id);
+		        
+		        $status->execute();
+		       
+		        //Encerra a conexão com o banco
+		        $this->conexao = null;
+		        return true;
+		    } catch (PDOException $e) {
+		    	return false;
+		    }
+		}
+
+		public function excluirUsuario($usuario_id){
+	    	try{
+				$status = $this->conexao->prepare("DELETE FROM usuario WHERE id = ?");
+				$status->bindValue(1, $usuario_id);
+				$status->execute();
+			
+	            if($status){
+					return true;
+				}else{
+					return false;
+				}
+	        
+	        } catch (PDOException $e){
+	            echo 'Ocorreram erros ao excluir o usuário' . $e;
+	        }
+	    }
+
+	    public function buscaSaldoTotal($usuario_id){
+	    	try{
+				$status = $this->conexao->prepare("SELECT saldo_total FROM usuario WHERE id = ?");
+				$status->bindValue(1, $usuario_id);
+				$status->execute();
+			
+	            $resultado = $status->fetchAll();
+
+	            $this->conexao = null;
+
+	            return $resultado[0]['saldo_total'];
+	        
+	        } catch (PDOException $e){
+	            echo 'Ocorreram erros ao excluir o usuário' . $e;
+	        }
+	    }
 	}
 ?>

@@ -5,8 +5,7 @@ class ContasModel {
 	private $usuario_id;
 	private $tipo;
 	private $saldo;
-	private $limite_despesas;
-
+	
 	public function __construct(){}
 
 	public function __set($propriedade, $valor){
