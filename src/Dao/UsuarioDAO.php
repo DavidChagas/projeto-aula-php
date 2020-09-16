@@ -41,9 +41,21 @@
 
 		        $status->execute();
 
+		        //Busca id do usuário inserido 
+		        $query = $this->conexao->prepare("SELECT id FROM usuario WHERE nome = ? ORDER BY id desc LIMIT 1");
+		        $query->bindValue(1, $usuario->nome);
+		        $query->execute();
+
+		        $id_usuario = $query->fetchAll();
+		        
 		        //Encerra a conexão com o banco
 		        $this->conexao = null;
-		        return true;
+
+		        if(isset($id_usuario[0]['id'])){
+					return $id_usuario[0]['id'];
+		        }else{
+		        	return 0;
+		        }
 		    } catch (PDOException $e) {
 		    	return false;
 		    	// echo "Ocorreram erros ao inserir novo usuario !";

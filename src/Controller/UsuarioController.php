@@ -5,7 +5,9 @@ session_start();
 include '../Include/UsuarioValidate.php';
 include '../Persistence/Conexao.php';
 include '../Model/UsuarioModel.php';
+include '../Model/ContasModel.php';
 include '../DAO/UsuarioDAO.php';
+include '../DAO/ContasDAO.php';
 
 if(isset($_GET['operacao'])){
 
@@ -40,9 +42,27 @@ if(isset($_GET['operacao'])){
 
 	                $usuarioDao = new UsuarioDAO();
 
-	                if($usuarioDao->inserirUsuario($usuario)){
-	                	header("location:../../index.php");
-	                }
+	                $id_usuario = $usuarioDao->inserirUsuario($usuario);
+	                Print_r($id_usuario);
+	                if($id_usuario > 0){
+
+	                	// cria conta com o valor inicial inserido
+	                	$conta = new ContasModel();
+
+		                $conta->usuario_id = $id_usuario;
+		                $conta->tipo = 'Carteira';
+		                $conta->saldo = $_POST['saldo_total'];
+		                
+		                $contasDao = new ContasDAO();
+
+		                if($contasDao->inserirConta($conta)){
+		                	header("location:../../index.php");
+		                }else{
+		                	echo 'Erro ao inserir conta';
+		                }
+					}else{
+						header("location:../../index.php");
+					}
 	                	            	
 		        }else{
 					$err = serialize($erros);
