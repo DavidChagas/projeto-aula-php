@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.14-MariaDB)
-# Date: 2020-09-15 19:28:12
+# Date: 2020-09-16 20:06:41
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
 
@@ -41,9 +41,9 @@ CREATE TABLE `despesa` (
   `descricao` varchar(255) DEFAULT NULL,
   `valor` varchar(255) DEFAULT NULL,
   `data` date DEFAULT NULL,
-  `pago` tinyint(3) DEFAULT 0,
+  `pago` varchar(3) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 #
 # Structure for table "receita"
@@ -57,7 +57,7 @@ CREATE TABLE `receita` (
   `descricao` varchar(255) DEFAULT NULL,
   `valor` varchar(255) DEFAULT NULL,
   `data` date DEFAULT NULL,
-  `recebido` tinyint(3) DEFAULT 0,
+  `recebido` varchar(3) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -73,4 +73,4 @@ CREATE TABLE `usuario` (
   `email` varchar(255) DEFAULT NULL,
   `senha` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
