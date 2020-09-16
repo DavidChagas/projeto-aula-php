@@ -56,8 +56,6 @@
                                     echo '<div class="informacao">' . 'CPF: ' . $usuario['cpf'] . '</div>';
 
                                     echo '<div class="informacao">' . 'E-mail: ' . $usuario['email'] . '</div>';
-
-                                    echo '<div class="informacao">' . 'Saldo Total: R$' . $usuario['saldo_total'] . '</div>';
                                 ?>
                                 <a href="UsuarioViewCadastrar.php?usuarioId=<?php echo $usuario['id']?>">
                                     <button class="btn btn-primary">Atualizar dados</button>

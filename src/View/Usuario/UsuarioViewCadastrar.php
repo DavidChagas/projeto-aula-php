@@ -17,7 +17,6 @@
         $cpf = $usuario['cpf'];
         $email = $usuario['email'];
         $senha = $usuario['senha'];
-        $saldo_total = $usuario['saldo_total'];
     }else{
         $acao = "cadastrar";
         $usuario = "";
@@ -25,7 +24,6 @@
         $cpf = "";
         $email = "";
         $senha = "";
-        $saldo_total = "";
     }
 ?>
 <html lang="pt">
@@ -64,9 +62,6 @@
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" type="password" name="senha" value="<?php echo $senha ?>" placeholder="Senha">
-                                </div>
-                                <div class="form-group" <?php if(isset($usuario_id)) echo 'style="visibility: hidden;"' ?>>
-                                    <input class="form-control" type="text" name="saldo_total" value="<?php echo $saldo_total ?>" placeholder="Saldo inicial">
                                 </div>
                                 <button class="btn btn-primary" type="submit"><?php if(isset($usuario_id)) echo 'Atualizar'; else echo 'Cadastrar' ?></button>
                                 <a href="<?php if(isset($usuario_id)) echo 'UsuarioViewListar.php'; else echo '../../../index.php' ?>"><button type="button" class="btn btn-danger">Cancelar</button></a>

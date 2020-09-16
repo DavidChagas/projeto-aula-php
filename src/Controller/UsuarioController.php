@@ -19,7 +19,7 @@ if(isset($_GET['operacao'])){
 		case 'cadastrar':
 			$erros = array();
 			
-			if( (!empty($_POST['nome'])) && (!empty($_POST['cpf'])) && (!empty($_POST['email'])) && (!empty($_POST['senha'])) && (!empty($_POST['saldo_total']) || $_POST['saldo_total'] == 0)){
+			if( (!empty($_POST['nome'])) && (!empty($_POST['cpf'])) && (!empty($_POST['email'])) && (!empty($_POST['senha']))){
 
 				if(!UsuarioValidate::testarEmail($_POST['email'])){
 					$erros[] = 'Email inválido!';
@@ -27,10 +27,6 @@ if(isset($_GET['operacao'])){
 				if(!UsuarioValidate::validaCPF($_POST['cpf'])){
 					$erros[] = 'CPF inválido!';
 				}
-				if(!UsuarioValidate::validaSaldoPositivo($_POST['saldo_total'])){
-					$erros[] = 'O saldo não pode ser negativo!';
-				}
-
 				if(count($erros) == 0){
 	                $usuario = new UsuarioModel();
 
@@ -38,8 +34,7 @@ if(isset($_GET['operacao'])){
 	                $usuario->cpf = $_POST['cpf'];
 	                $usuario->email = $_POST['email'];
 	                $usuario->senha = $_POST['senha'];
-	                $usuario->saldo_total = $_POST['saldo_total'];
-
+	                
 	                $usuarioDao = new UsuarioDAO();
 
 	                $id_usuario = $usuarioDao->inserirUsuario($usuario);
@@ -51,7 +46,6 @@ if(isset($_GET['operacao'])){
 
 		                $conta->usuario_id = $id_usuario;
 		                $conta->tipo = 'Carteira';
-		                $conta->saldo = $_POST['saldo_total'];
 		                
 		                $contasDao = new ContasDAO();
 
@@ -96,16 +90,13 @@ if(isset($_GET['operacao'])){
 		case 'editar':
 			$erros = array();
 		
-			if( (!empty($_POST['nome'])) && (!empty($_POST['cpf'])) && (!empty($_POST['email'])) && (!empty($_POST['senha'])) && (!empty($_POST['saldo_total']) || $_POST['saldo_total'] == 0)){
+			if( (!empty($_POST['nome'])) && (!empty($_POST['cpf'])) && (!empty($_POST['email'])) && (!empty($_POST['senha']))){
 
 				if(!UsuarioValidate::testarEmail($_POST['email'])){
 					$erros[] = 'Email inválido!';
 				}
 				if(!UsuarioValidate::validaCPF($_POST['cpf'])){
 					$erros[] = 'CPF inválido!';
-				}
-				if(!UsuarioValidate::validaSaldoPositivo($_POST['saldo_total'])){
-					$erros[] = 'O saldo não pode ser negativo!';
 				}
 
 				if(count($erros) == 0){
@@ -116,8 +107,7 @@ if(isset($_GET['operacao'])){
 	                $usuario->cpf = $_POST['cpf'];
 	                $usuario->email = $_POST['email'];
 	                $usuario->senha = $_POST['senha'];
-	                $usuario->saldo_total = $_POST['saldo_total'];
-
+	                
 	                $usuarioDao = new UsuarioDAO();
 
 	                if($usuarioDao->EditarUsuario($usuario)){
