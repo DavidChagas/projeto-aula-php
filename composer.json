@@ -1,0 +1,15 @@
+{
+    "name": "davidchagas/gerenciador-de-financas",
+    "type": "project",
+    "authors": [
+        {
+            "name": "DavidChagas",
+            "email": "36827231+DavidChagas@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "7",
+        "phpunit/dbunit": "^4.0"
+    }
+}

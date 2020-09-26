@@ -1,0 +1,14 @@
+<dataset>
+    <table name="contas">
+        <column>id</column>
+        <column>usuario_id</column>
+        <column>tipo</column>
+        <column>saldo</column>
+        <row>
+            <value>1</value>
+            <value>1</value>
+            <value>Poupança</value>
+            <value>1500</value>
+        </row>
+    </table>
+</dataset>
