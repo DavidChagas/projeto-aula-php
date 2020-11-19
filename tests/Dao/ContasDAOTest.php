@@ -1,41 +1,29 @@
 <?php
-// include '../../src/Persistence/Conexao.php';
-// include '../../src/Include/ContasValidate.php';
-// include '../../src/Persistence/Conexao.php';
-// include '../../src/Model/ContasModel.php';
-// include '../../src/DAO/ContasDAO.php';
+use PHPUnit\Framework\TestCase;
+require 'src/Dao/ContasDAO.php';
+include 'src/Persistence/Conexao.php';
 
-// use PHPUnit\Framework\TestCase;
+class ContasDAOTest extends TestCase{
+	//ContasDAO::class
+	//$contasDao = $this->crateMock(new ContasDAO());
+	//protected static $contasDao;
 
-// class ContasDAOTest extends TestCase{
-//     public function testExemplo(){
-//         $teste = "topss";
-
-//         $this->assertEquals("topss", $teste);
-//     }
-// }
+    // public static function setUpBeforeClass(){
+    	
+    // }
 
 
-// use PHPUnit\Framework\TestCase;
+    // public static function tearDownAfterClass(){
+    // }
 
-// class ContasDAOTest extends TestCase
-// {
-//     private $conn = null;
- 
-//     public function getConnection(){
-//     }
- 
-//     public function getDataSet(){
-//         return $this->createXMLDataSet("tests/music.xml");
-//     }
- 
-//     public function testLendo(){ 
-//         //$conn = $this->getConnection()->getConnection();
-   
-//         // lendo albums
-//         $query = $conn->query('SELECT * FROM contas');
-//         $results = $query->fetchAll(PDO::FETCH_ASSOC);
-//         echo $results;
-//         $this->assertCount(1, $results);
-//     }
-// }   
+    public static function testeTest(){
+    	$teste = true;
+    	self::assertTrue($teste);
+    }
+
+    // public static function inserirConta(){
+    // 	$contasDao = $this->createMock(ContasDAO::class);
+    // 	$contasDao->method('inserirConta')->willReturn(true);
+    // 	self::assertTrue($contasDao->inserirConta());
+    // }
+}

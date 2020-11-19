@@ -8,13 +8,5 @@
 				return false;
 			}
 		}
-
-		public static function validaLimite($saldo, $limite){
-			if($saldo > $limite){
-				return true;
-			}else{
-				return false;
-			}
-		}
 	}
 ?>
