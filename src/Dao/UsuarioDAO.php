@@ -31,7 +31,7 @@
 		public function inserirUsuario($usuario){
 			
 			try{
-		        $status = $this->conexao->prepare("Insert Into usuario(id, nome, cpf, email, senha) values (null,?,?,?,?,?)");
+		        $status = $this->conexao->prepare("Insert Into usuario(id, nome, cpf, email, senha) values (null,?,?,?,?)");
 
 		        $status->bindValue(1, $usuario->nome);
 		        $status->bindValue(2, $usuario->cpf);
