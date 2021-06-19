@@ -16,7 +16,7 @@
 	        $status = $this->conexao->prepare("SELECT * FROM usuario WHERE nome = ? && senha = ?");
 
 	        $status->bindValue(1, $login);
-	        $status->bindValue(2, $senha);
+	        $status->bindValue(2, md5($senha));
 	       
 	        $status->execute();
 
@@ -36,7 +36,7 @@
 		        $status->bindValue(1, $usuario->nome);
 		        $status->bindValue(2, $usuario->cpf);
 		        $status->bindValue(3, $usuario->email);
-		        $status->bindValue(4, $usuario->senha);
+		        $status->bindValue(4, md5($usuario->senha));
 		        
 		        $status->execute();
 
